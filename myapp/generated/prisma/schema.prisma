@@ -1,0 +1,62 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider      = "prisma-client-js"
+  output        = "../generated/prisma"
+  binaryTargets = ["native", "windows"]
+}
+
+model User {
+  id      Int       @id @default(autoincrement())
+  name    String?
+  penalty Penalty[]
+}
+
+model Penalty {
+  id     Int    @id @default(autoincrement())
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int
+  amount String
+  carId  Int
+  car    Car    @relation(fields: [carId], references: [id])
+}
+
+model Car {
+  id            Int           @id @default(autoincrement())
+  axleCount     Int
+  buildYear     String
+  cabinNumber   String        @unique
+  capacity      String
+  className     String
+  colorName     String
+  countryName   String
+  fuelType      String
+  height        String
+  importDate    DateTime
+  length        String
+  manCount      Int
+  markName      String
+  mass          String
+  modelName     String
+  motorNumber   String
+  ownerType     OwnerType
+  plateNumber   String
+  type          String
+  weight        String
+  wheelPosition WheelPosition
+  width         String
+  penalties     Penalty[]
+}
+
+enum OwnerType {
+  PERSON
+  COMPANY
+}
+
+enum WheelPosition {
+  RIGHT
+  LEFT
+}
