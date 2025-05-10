@@ -12,6 +12,7 @@ export const getCurrentUser = async (req: Request, res: Response) => {
             car: true,
           },
         },
+        notifications: true,
       },
     });
   } catch (error) {
