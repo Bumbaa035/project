@@ -11,21 +11,25 @@ const features = [
     icon: <MaterialIcons name="assignment" size={32} color="#3949ab" />,
     title: 'Тээврийн хэрэгслийн бүртгэл',
     desc: 'Жолооч болон ачааны төрөл бүртгэх, зөвшөөрөгдсөн маршрут сонгох.',
+    button: '/home'
   },
   {
     icon: <MaterialIcons name="gps-fixed" size={32} color="#3949ab" />,
     title: 'GPS байршлын хяналт',
     desc: 'Машины байршлыг бодит цагт хянах, зөвшөөрөгдсөн маршрутаар явж буй эсэхийг шалгах.',
+    button: '/map'
   },
   {
     icon: <MaterialIcons name="notifications-active" size={32} color="#3949ab" />,
     title: 'Анхааруулга, мэдэгдэл',
     desc: 'Дүрэм зөрчсөн тохиолдолд push notification, SMS, email илгээх.',
+    button: '/alert'
   },
   {
     icon: <MaterialIcons name="cloud" size={32} color="#3949ab" />,
     title: 'Цаг агаар, торгууль',
     desc: 'Ойролцоох цаг агаарын мэдээлэл, торгууль бодох.',
+    button: '/fine'
   },
 ];
 
@@ -35,7 +39,9 @@ export default function HomePage() {
   const handleStart = () => {
     router.push('/login');
   };
-
+  const handleFine = () => {
+    router.push('/fine');
+  }
   return (
     <LinearGradient colors={["#3949ab", "#6a1b9a"]} style={styles.gradient}>
       <ScrollView contentContainerStyle={styles.centered} showsVerticalScrollIndicator={false}>
@@ -51,10 +57,10 @@ export default function HomePage() {
         </TouchableOpacity>
         <View style={styles.featuresGrid}>
           {features.map((f, i) => (
-            <View key={i} style={styles.featureGridCard}>
+            <TouchableOpacity onPress={() => router.push(f.button)} key={i} style={styles.featureGridCard}>
               {React.cloneElement(f.icon, { size: 40 })}
               <Text style={styles.featureGridTitle}>{f.title}</Text>
-            </View>
+            </TouchableOpacity>
           ))}
         </View>
       </ScrollView>
