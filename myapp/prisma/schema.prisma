@@ -13,11 +13,14 @@ model User {
   id           Int                     @id @default(autoincrement())
   firstName    String
   lastName     String
-  register     String
+  register     String @unique
   penalty      Penalty[]
   transport    Transport[]
   notifications PermissionNotification[]
-  location String
+  location String 
+  phoneNumber  String @unique
+  password String?
+  image String @default("https://res.cloudinary.com/dszot6j60/image/upload/v1740139778/samples/smile.jpg")
 }
 
 model PermissionNotification {
@@ -34,6 +37,7 @@ model Penalty {
   amount  String
   carId   Int
   car     Car    @relation(fields: [carId], references: [id])
+  paid    Boolean @default(false)
 }
 
 model Car {
@@ -98,6 +102,7 @@ model Notification {
   transport    Transport  @relation(fields: [transportId], references: [id])
   callCenterId Int 
   callCenter   CallCenter @relation(fields: [callCenterId], references: [id])
+  message      String
 }
 
 enum OwnerType {
