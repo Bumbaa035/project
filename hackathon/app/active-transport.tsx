@@ -1,9 +1,12 @@
-import  React, {useEffect, useState }from "react";
+import  React, {useEffect, useState, useRef }from "react";
 import {Alert, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import MapView, { Polygon } from "react-native-maps";
 import { useRouter } from "expo-router";
 import * as Location from 'expo-location';
 import { MaterialIcons } from "@expo/vector-icons";
+import { useActiveTransport } from "../context/ActiveTransportContext";
+import { io } from "socket.io-client";
+import type { Socket } from "socket.io-client";
 
 const sections = [
   {
@@ -37,11 +40,13 @@ export default function ActiveTransportPage() {
   const router = useRouter();
   const { setActiveTransport } = useActiveTransport();
 
-  const [location, setLocation] = useState(null);
-  const [socket, setSocket] = useState(null);
+  const [location, setLocation] = useState<{latitude: number, longitude: number} | null>(null);
+  const [socket, setSocket] = useState<Socket | null>(null);
+
+  const locationWatcher = useRef<Location.LocationSubscription | null>(null);
 
   useEffect(() => {
-    const newSocket = io('http://210.109.53.233:3001'); // Change to your IP
+    const newSocket = io('http://210.109.53.233:3001');
     setSocket(newSocket);
     // Listen for alerts from the server
     newSocket.on('alert', (msg) => {
@@ -54,8 +59,6 @@ export default function ActiveTransportPage() {
   }, []);
   
   useEffect(() => {
-    let locationWatcher = null;
-
     (async () => {
       const { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
@@ -63,12 +66,11 @@ export default function ActiveTransportPage() {
         return;
       }
 
-      // Start watching user's location
-      locationWatcher = await Location.watchPositionAsync(
+      locationWatcher.current = await Location.watchPositionAsync(
         {
           accuracy: Location.Accuracy.High,
-          timeInterval: 3000, // every 3 seconds
-          distanceInterval: 5, // or every 5 meters
+          timeInterval: 3000,
+          distanceInterval: 5,
         },
         (loc) => {
           const coords = {
@@ -85,8 +87,12 @@ export default function ActiveTransportPage() {
           }
         }
       );
-      })();
-    }, []);
+    })();
+
+    return () => {
+      locationWatcher.current?.remove();
+    };
+  }, []);
 return (
   <View style={{ flex: 1 }}>
     {/* Top 40%: Map */}
@@ -101,23 +107,26 @@ return (
             longitudeDelta: 0.005,
           }}
         />
-      </View>
-      {/* Bottom 60%: Info and buttons */}
-      <View style={styles.bottomSheet}>
-        {sections.map((section, idx) => (
-          <TouchableOpacity
-            key={section.label}
-            style={styles.sectionButton}
-            activeOpacity={0.85}
-            onPress={() => section.onPress(router)}
-          >
-            <MaterialIcons name={section.icon as any} size={24} color="#3949ab" style={{ marginRight: 12 }} />
-            <Text style={styles.sectionTitle}>{section.label}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+      ) : (
+        <View style={styles.mapPlaceholder}><Text>Байршил тодорхойлогдсонгүй</Text></View>
+      )}
     </View>
-  );
+    {/* Bottom 60%: Info and buttons */}
+    <View style={styles.bottomSheet}>
+      {sections.map((section, idx) => (
+        <TouchableOpacity
+          key={section.label}
+          style={styles.sectionButton}
+          activeOpacity={0.85}
+          onPress={() => section.onPress(router)}
+        >
+          <MaterialIcons name={section.icon as any} size={24} color="#3949ab" style={{ marginRight: 12 }} />
+          <Text style={styles.sectionTitle}>{section.label}</Text>
+        </TouchableOpacity>
+      ))}
+    </View>
+  </View>
+);
 }
 
 const styles = StyleSheet.create({
@@ -149,5 +158,13 @@ const styles = StyleSheet.create({
     color: "#3949ab",
     flex: 1,
     textAlign: "left",
+  },
+  mapPlaceholder: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  map: {
+    flex: 1,
   },
 });
