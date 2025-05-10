@@ -126,7 +126,9 @@ exports.Prisma.UserScalarFieldEnum = {
   lastName: 'lastName',
   register: 'register',
   location: 'location',
-  phoneNumber: 'phoneNumber'
+  phoneNumber: 'phoneNumber',
+  password: 'password',
+  image: 'image'
 };
 
 exports.Prisma.PermissionNotificationScalarFieldEnum = {
@@ -208,6 +210,11 @@ exports.Prisma.JsonNullValueInput = {
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
+};
+
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
 };
 
 exports.Prisma.JsonNullValueFilter = {

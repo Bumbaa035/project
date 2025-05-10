@@ -19,6 +19,8 @@ model User {
   notifications PermissionNotification[]
   location      String
   phoneNumber   String                   @unique
+  password      String?
+  image         String                   @default("https://res.cloudinary.com/dszot6j60/image/upload/v1740139778/samples/smile.jpg")
 }
 
 model PermissionNotification {

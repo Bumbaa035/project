@@ -1,10 +1,10 @@
 import prisma from "../../prismaClient";
 import { Request, Response } from "express";
-import bcrypt from "bcrypt";
+import bcrypt from "bcrypt"
 import jwt from "jsonwebtoken";
 
 export const login = async (req: Request, res: Response) => {
-  const { firstName, lastName, register, location, phoneNumber } = req.body;
+  const { phoneNumber, password } = req.body;
   const JWT_SECRET_KEY = process.env.JWT_KEY || 1234;
   try {
     const userExist = await prisma.user.findUnique({
@@ -22,39 +22,16 @@ export const login = async (req: Request, res: Response) => {
           },
           JWT_SECRET_KEY
         );
-        res.status(201).json({
-          success: true,
-          message: `Successfully logged in.`,
-          token: token,
-        });
-      } else {
-        res.status(404).json({
-          success: false,
-          message: `Enter registered information .`,
-        });
-      }
-    } else {
-      const hashedRegister = await bcrypt.hash(register, 8);
-      const newUser = await prisma.user.create({
-        data: {
-          firstName: firstName,
-          lastName: lastName,
-          register: hashedRegister,
-          location: location,
-          phoneNumber: phoneNumber,
-        },
-      });
-      const token = jwt.sign(
-        {
-          exp: Math.floor(Date.now() / 1000) + 60 * 60,
-          data: { email: newUser.firstName, username: newUser.lastName },
-        },
-        JWT_SECRET_KEY
-      );
-      res.status(202).json({
+      res.status(201).json({
         success: true,
-        message: "Successfully created user info",
-        token: token,
+        message: `Successfully logged in.`,
+        user: userExist,
+        // token: token,
+      });
+    } else {
+      res.status(404).json({
+        success: false,
+        message: `Enter registered information .`,
       });
     }
   } catch (error) {

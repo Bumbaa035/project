@@ -1761,6 +1761,8 @@ export namespace Prisma {
     register: string | null
     location: string | null
     phoneNumber: string | null
+    password: string | null
+    image: string | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1770,6 +1772,8 @@ export namespace Prisma {
     register: string | null
     location: string | null
     phoneNumber: string | null
+    password: string | null
+    image: string | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1779,6 +1783,8 @@ export namespace Prisma {
     register: number
     location: number
     phoneNumber: number
+    password: number
+    image: number
     _all: number
   }
 
@@ -1798,6 +1804,8 @@ export namespace Prisma {
     register?: true
     location?: true
     phoneNumber?: true
+    password?: true
+    image?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1807,6 +1815,8 @@ export namespace Prisma {
     register?: true
     location?: true
     phoneNumber?: true
+    password?: true
+    image?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1816,6 +1826,8 @@ export namespace Prisma {
     register?: true
     location?: true
     phoneNumber?: true
+    password?: true
+    image?: true
     _all?: true
   }
 
@@ -1912,6 +1924,8 @@ export namespace Prisma {
     register: string
     location: string
     phoneNumber: string
+    password: string | null
+    image: string
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -1940,6 +1954,8 @@ export namespace Prisma {
     register?: boolean
     location?: boolean
     phoneNumber?: boolean
+    password?: boolean
+    image?: boolean
     penalty?: boolean | User$penaltyArgs<ExtArgs>
     transport?: boolean | User$transportArgs<ExtArgs>
     notifications?: boolean | User$notificationsArgs<ExtArgs>
@@ -1953,6 +1969,8 @@ export namespace Prisma {
     register?: boolean
     location?: boolean
     phoneNumber?: boolean
+    password?: boolean
+    image?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1962,6 +1980,8 @@ export namespace Prisma {
     register?: boolean
     location?: boolean
     phoneNumber?: boolean
+    password?: boolean
+    image?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1971,9 +1991,11 @@ export namespace Prisma {
     register?: boolean
     location?: boolean
     phoneNumber?: boolean
+    password?: boolean
+    image?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "register" | "location" | "phoneNumber", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "register" | "location" | "phoneNumber" | "password" | "image", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     penalty?: boolean | User$penaltyArgs<ExtArgs>
     transport?: boolean | User$transportArgs<ExtArgs>
@@ -1997,6 +2019,8 @@ export namespace Prisma {
       register: string
       location: string
       phoneNumber: string
+      password: string | null
+      image: string
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2429,6 +2453,8 @@ export namespace Prisma {
     readonly register: FieldRef<"User", 'String'>
     readonly location: FieldRef<"User", 'String'>
     readonly phoneNumber: FieldRef<"User", 'String'>
+    readonly password: FieldRef<"User", 'String'>
+    readonly image: FieldRef<"User", 'String'>
   }
     
 
@@ -10942,7 +10968,9 @@ export namespace Prisma {
     lastName: 'lastName',
     register: 'register',
     location: 'location',
-    phoneNumber: 'phoneNumber'
+    phoneNumber: 'phoneNumber',
+    password: 'password',
+    image: 'image'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -11057,6 +11085,14 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   export const JsonNullValueFilter: {
@@ -11191,6 +11227,8 @@ export namespace Prisma {
     register?: StringFilter<"User"> | string
     location?: StringFilter<"User"> | string
     phoneNumber?: StringFilter<"User"> | string
+    password?: StringNullableFilter<"User"> | string | null
+    image?: StringFilter<"User"> | string
     penalty?: PenaltyListRelationFilter
     transport?: TransportListRelationFilter
     notifications?: PermissionNotificationListRelationFilter
@@ -11203,6 +11241,8 @@ export namespace Prisma {
     register?: SortOrder
     location?: SortOrder
     phoneNumber?: SortOrder
+    password?: SortOrderInput | SortOrder
+    image?: SortOrder
     penalty?: PenaltyOrderByRelationAggregateInput
     transport?: TransportOrderByRelationAggregateInput
     notifications?: PermissionNotificationOrderByRelationAggregateInput
@@ -11218,6 +11258,8 @@ export namespace Prisma {
     firstName?: StringFilter<"User"> | string
     lastName?: StringFilter<"User"> | string
     location?: StringFilter<"User"> | string
+    password?: StringNullableFilter<"User"> | string | null
+    image?: StringFilter<"User"> | string
     penalty?: PenaltyListRelationFilter
     transport?: TransportListRelationFilter
     notifications?: PermissionNotificationListRelationFilter
@@ -11230,6 +11272,8 @@ export namespace Prisma {
     register?: SortOrder
     location?: SortOrder
     phoneNumber?: SortOrder
+    password?: SortOrderInput | SortOrder
+    image?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -11247,6 +11291,8 @@ export namespace Prisma {
     register?: StringWithAggregatesFilter<"User"> | string
     location?: StringWithAggregatesFilter<"User"> | string
     phoneNumber?: StringWithAggregatesFilter<"User"> | string
+    password?: StringNullableWithAggregatesFilter<"User"> | string | null
+    image?: StringWithAggregatesFilter<"User"> | string
   }
 
   export type PermissionNotificationWhereInput = {
@@ -11733,6 +11779,8 @@ export namespace Prisma {
     register: string
     location: string
     phoneNumber: string
+    password?: string | null
+    image?: string
     penalty?: PenaltyCreateNestedManyWithoutUserInput
     transport?: TransportCreateNestedManyWithoutUserInput
     notifications?: PermissionNotificationCreateNestedManyWithoutUserInput
@@ -11745,6 +11793,8 @@ export namespace Prisma {
     register: string
     location: string
     phoneNumber: string
+    password?: string | null
+    image?: string
     penalty?: PenaltyUncheckedCreateNestedManyWithoutUserInput
     transport?: TransportUncheckedCreateNestedManyWithoutUserInput
     notifications?: PermissionNotificationUncheckedCreateNestedManyWithoutUserInput
@@ -11756,6 +11806,8 @@ export namespace Prisma {
     register?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: StringFieldUpdateOperationsInput | string
     penalty?: PenaltyUpdateManyWithoutUserNestedInput
     transport?: TransportUpdateManyWithoutUserNestedInput
     notifications?: PermissionNotificationUpdateManyWithoutUserNestedInput
@@ -11768,6 +11820,8 @@ export namespace Prisma {
     register?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: StringFieldUpdateOperationsInput | string
     penalty?: PenaltyUncheckedUpdateManyWithoutUserNestedInput
     transport?: TransportUncheckedUpdateManyWithoutUserNestedInput
     notifications?: PermissionNotificationUncheckedUpdateManyWithoutUserNestedInput
@@ -11780,6 +11834,8 @@ export namespace Prisma {
     register: string
     location: string
     phoneNumber: string
+    password?: string | null
+    image?: string
   }
 
   export type UserUpdateManyMutationInput = {
@@ -11788,6 +11844,8 @@ export namespace Prisma {
     register?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -11797,6 +11855,8 @@ export namespace Prisma {
     register?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: StringFieldUpdateOperationsInput | string
   }
 
   export type PermissionNotificationCreateInput = {
@@ -12293,6 +12353,21 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type PenaltyListRelationFilter = {
     every?: PenaltyWhereInput
     some?: PenaltyWhereInput
@@ -12309,6 +12384,11 @@ export namespace Prisma {
     every?: PermissionNotificationWhereInput
     some?: PermissionNotificationWhereInput
     none?: PermissionNotificationWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type PenaltyOrderByRelationAggregateInput = {
@@ -12330,6 +12410,8 @@ export namespace Prisma {
     register?: SortOrder
     location?: SortOrder
     phoneNumber?: SortOrder
+    password?: SortOrder
+    image?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -12343,6 +12425,8 @@ export namespace Prisma {
     register?: SortOrder
     location?: SortOrder
     phoneNumber?: SortOrder
+    password?: SortOrder
+    image?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -12352,6 +12436,8 @@ export namespace Prisma {
     register?: SortOrder
     location?: SortOrder
     phoneNumber?: SortOrder
+    password?: SortOrder
+    image?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -12390,6 +12476,24 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type UserScalarRelationFilter = {
@@ -12887,6 +12991,10 @@ export namespace Prisma {
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type PenaltyUpdateManyWithoutUserNestedInput = {
@@ -13420,6 +13528,20 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -13462,6 +13584,34 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
@@ -13713,6 +13863,8 @@ export namespace Prisma {
     register: string
     location: string
     phoneNumber: string
+    password?: string | null
+    image?: string
     penalty?: PenaltyCreateNestedManyWithoutUserInput
     transport?: TransportCreateNestedManyWithoutUserInput
   }
@@ -13724,6 +13876,8 @@ export namespace Prisma {
     register: string
     location: string
     phoneNumber: string
+    password?: string | null
+    image?: string
     penalty?: PenaltyUncheckedCreateNestedManyWithoutUserInput
     transport?: TransportUncheckedCreateNestedManyWithoutUserInput
   }
@@ -13750,6 +13904,8 @@ export namespace Prisma {
     register?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: StringFieldUpdateOperationsInput | string
     penalty?: PenaltyUpdateManyWithoutUserNestedInput
     transport?: TransportUpdateManyWithoutUserNestedInput
   }
@@ -13761,6 +13917,8 @@ export namespace Prisma {
     register?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: StringFieldUpdateOperationsInput | string
     penalty?: PenaltyUncheckedUpdateManyWithoutUserNestedInput
     transport?: TransportUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -13771,6 +13929,8 @@ export namespace Prisma {
     register: string
     location: string
     phoneNumber: string
+    password?: string | null
+    image?: string
     transport?: TransportCreateNestedManyWithoutUserInput
     notifications?: PermissionNotificationCreateNestedManyWithoutUserInput
   }
@@ -13782,6 +13942,8 @@ export namespace Prisma {
     register: string
     location: string
     phoneNumber: string
+    password?: string | null
+    image?: string
     transport?: TransportUncheckedCreateNestedManyWithoutUserInput
     notifications?: PermissionNotificationUncheckedCreateNestedManyWithoutUserInput
   }
@@ -13866,6 +14028,8 @@ export namespace Prisma {
     register?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: StringFieldUpdateOperationsInput | string
     transport?: TransportUpdateManyWithoutUserNestedInput
     notifications?: PermissionNotificationUpdateManyWithoutUserNestedInput
   }
@@ -13877,6 +14041,8 @@ export namespace Prisma {
     register?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: StringFieldUpdateOperationsInput | string
     transport?: TransportUncheckedUpdateManyWithoutUserNestedInput
     notifications?: PermissionNotificationUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -14033,6 +14199,8 @@ export namespace Prisma {
     register: string
     location: string
     phoneNumber: string
+    password?: string | null
+    image?: string
     penalty?: PenaltyCreateNestedManyWithoutUserInput
     notifications?: PermissionNotificationCreateNestedManyWithoutUserInput
   }
@@ -14044,6 +14212,8 @@ export namespace Prisma {
     register: string
     location: string
     phoneNumber: string
+    password?: string | null
+    image?: string
     penalty?: PenaltyUncheckedCreateNestedManyWithoutUserInput
     notifications?: PermissionNotificationUncheckedCreateNestedManyWithoutUserInput
   }
@@ -14165,6 +14335,8 @@ export namespace Prisma {
     register?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: StringFieldUpdateOperationsInput | string
     penalty?: PenaltyUpdateManyWithoutUserNestedInput
     notifications?: PermissionNotificationUpdateManyWithoutUserNestedInput
   }
@@ -14176,6 +14348,8 @@ export namespace Prisma {
     register?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    image?: StringFieldUpdateOperationsInput | string
     penalty?: PenaltyUncheckedUpdateManyWithoutUserNestedInput
     notifications?: PermissionNotificationUncheckedUpdateManyWithoutUserNestedInput
   }
