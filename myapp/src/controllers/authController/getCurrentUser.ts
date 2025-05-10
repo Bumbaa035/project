@@ -7,7 +7,11 @@ export const getCurrentUser = async (req: Request, res: Response) => {
       where: id,
       include: {
         penalty: true,
-        transport: true,
+        transport: {
+          include: {
+            car: true,
+          },
+        },
       },
     });
   } catch (error) {
