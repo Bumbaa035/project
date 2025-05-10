@@ -2,9 +2,11 @@ import prisma from "../../prismaClient";
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+
 export const signUp = async (req: Request, res: Response) => {
   const { firstName, lastName, register, location, phoneNumber } = req.body;
-  const JWT_SECRET_KEY = process.env.JWT_KEY || 1234;
+  const JWT_SECRET_KEY = process.env.JWT_KEY || "1234";
+  console.log(req.body);
 
   try {
     const hashedRegister = await bcrypt.hash(register, 8);
