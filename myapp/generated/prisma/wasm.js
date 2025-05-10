@@ -122,7 +122,16 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 
 exports.Prisma.UserScalarFieldEnum = {
   id: 'id',
-  name: 'name'
+  firstName: 'firstName',
+  lastName: 'lastName',
+  register: 'register',
+  location: 'location'
+};
+
+exports.Prisma.PermissionNotificationScalarFieldEnum = {
+  id: 'id',
+  message: 'message',
+  userId: 'userId'
 };
 
 exports.Prisma.PenaltyScalarFieldEnum = {
@@ -153,9 +162,35 @@ exports.Prisma.CarScalarFieldEnum = {
   ownerType: 'ownerType',
   plateNumber: 'plateNumber',
   type: 'type',
-  weight: 'weight',
   wheelPosition: 'wheelPosition',
-  width: 'width'
+  width: 'width',
+  location: 'location'
+};
+
+exports.Prisma.TransportScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  carId: 'carId',
+  status: 'status',
+  destination: 'destination'
+};
+
+exports.Prisma.CallCenterScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  password: 'password',
+  areaId: 'areaId'
+};
+
+exports.Prisma.AreaScalarFieldEnum = {
+  id: 'id',
+  area: 'area'
+};
+
+exports.Prisma.NotificationScalarFieldEnum = {
+  id: 'id',
+  transportId: 'transportId',
+  callCenterId: 'callCenterId'
 };
 
 exports.Prisma.SortOrder = {
@@ -163,14 +198,19 @@ exports.Prisma.SortOrder = {
   desc: 'desc'
 };
 
+exports.Prisma.JsonNullValueInput = {
+  JsonNull: Prisma.JsonNull
+};
+
 exports.Prisma.QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 };
 
-exports.Prisma.NullsOrder = {
-  first: 'first',
-  last: 'last'
+exports.Prisma.JsonNullValueFilter = {
+  DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull,
+  AnyNull: Prisma.AnyNull
 };
 exports.OwnerType = exports.$Enums.OwnerType = {
   PERSON: 'PERSON',
@@ -184,8 +224,13 @@ exports.WheelPosition = exports.$Enums.WheelPosition = {
 
 exports.Prisma.ModelName = {
   User: 'User',
+  PermissionNotification: 'PermissionNotification',
   Penalty: 'Penalty',
-  Car: 'Car'
+  Car: 'Car',
+  Transport: 'Transport',
+  CallCenter: 'CallCenter',
+  Area: 'Area',
+  Notification: 'Notification'
 };
 
 /**
