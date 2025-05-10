@@ -125,7 +125,8 @@ exports.Prisma.UserScalarFieldEnum = {
   firstName: 'firstName',
   lastName: 'lastName',
   register: 'register',
-  location: 'location'
+  location: 'location',
+  phoneNumber: 'phoneNumber'
 };
 
 exports.Prisma.PermissionNotificationScalarFieldEnum = {
@@ -138,7 +139,8 @@ exports.Prisma.PenaltyScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   amount: 'amount',
-  carId: 'carId'
+  carId: 'carId',
+  paid: 'paid'
 };
 
 exports.Prisma.CarScalarFieldEnum = {
@@ -190,7 +192,8 @@ exports.Prisma.AreaScalarFieldEnum = {
 exports.Prisma.NotificationScalarFieldEnum = {
   id: 'id',
   transportId: 'transportId',
-  callCenterId: 'callCenterId'
+  callCenterId: 'callCenterId',
+  message: 'message'
 };
 
 exports.Prisma.SortOrder = {

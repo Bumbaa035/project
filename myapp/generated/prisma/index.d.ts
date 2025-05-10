@@ -1760,6 +1760,7 @@ export namespace Prisma {
     lastName: string | null
     register: string | null
     location: string | null
+    phoneNumber: string | null
   }
 
   export type UserMaxAggregateOutputType = {
@@ -1768,6 +1769,7 @@ export namespace Prisma {
     lastName: string | null
     register: string | null
     location: string | null
+    phoneNumber: string | null
   }
 
   export type UserCountAggregateOutputType = {
@@ -1776,6 +1778,7 @@ export namespace Prisma {
     lastName: number
     register: number
     location: number
+    phoneNumber: number
     _all: number
   }
 
@@ -1794,6 +1797,7 @@ export namespace Prisma {
     lastName?: true
     register?: true
     location?: true
+    phoneNumber?: true
   }
 
   export type UserMaxAggregateInputType = {
@@ -1802,6 +1806,7 @@ export namespace Prisma {
     lastName?: true
     register?: true
     location?: true
+    phoneNumber?: true
   }
 
   export type UserCountAggregateInputType = {
@@ -1810,6 +1815,7 @@ export namespace Prisma {
     lastName?: true
     register?: true
     location?: true
+    phoneNumber?: true
     _all?: true
   }
 
@@ -1905,6 +1911,7 @@ export namespace Prisma {
     lastName: string
     register: string
     location: string
+    phoneNumber: string
     _count: UserCountAggregateOutputType | null
     _avg: UserAvgAggregateOutputType | null
     _sum: UserSumAggregateOutputType | null
@@ -1932,6 +1939,7 @@ export namespace Prisma {
     lastName?: boolean
     register?: boolean
     location?: boolean
+    phoneNumber?: boolean
     penalty?: boolean | User$penaltyArgs<ExtArgs>
     transport?: boolean | User$transportArgs<ExtArgs>
     notifications?: boolean | User$notificationsArgs<ExtArgs>
@@ -1944,6 +1952,7 @@ export namespace Prisma {
     lastName?: boolean
     register?: boolean
     location?: boolean
+    phoneNumber?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1952,6 +1961,7 @@ export namespace Prisma {
     lastName?: boolean
     register?: boolean
     location?: boolean
+    phoneNumber?: boolean
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectScalar = {
@@ -1960,9 +1970,10 @@ export namespace Prisma {
     lastName?: boolean
     register?: boolean
     location?: boolean
+    phoneNumber?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "register" | "location", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "register" | "location" | "phoneNumber", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     penalty?: boolean | User$penaltyArgs<ExtArgs>
     transport?: boolean | User$transportArgs<ExtArgs>
@@ -1985,6 +1996,7 @@ export namespace Prisma {
       lastName: string
       register: string
       location: string
+      phoneNumber: string
     }, ExtArgs["result"]["user"]>
     composites: {}
   }
@@ -2416,6 +2428,7 @@ export namespace Prisma {
     readonly lastName: FieldRef<"User", 'String'>
     readonly register: FieldRef<"User", 'String'>
     readonly location: FieldRef<"User", 'String'>
+    readonly phoneNumber: FieldRef<"User", 'String'>
   }
     
 
@@ -3993,6 +4006,7 @@ export namespace Prisma {
     userId: number | null
     amount: string | null
     carId: number | null
+    paid: boolean | null
   }
 
   export type PenaltyMaxAggregateOutputType = {
@@ -4000,6 +4014,7 @@ export namespace Prisma {
     userId: number | null
     amount: string | null
     carId: number | null
+    paid: boolean | null
   }
 
   export type PenaltyCountAggregateOutputType = {
@@ -4007,6 +4022,7 @@ export namespace Prisma {
     userId: number
     amount: number
     carId: number
+    paid: number
     _all: number
   }
 
@@ -4028,6 +4044,7 @@ export namespace Prisma {
     userId?: true
     amount?: true
     carId?: true
+    paid?: true
   }
 
   export type PenaltyMaxAggregateInputType = {
@@ -4035,6 +4052,7 @@ export namespace Prisma {
     userId?: true
     amount?: true
     carId?: true
+    paid?: true
   }
 
   export type PenaltyCountAggregateInputType = {
@@ -4042,6 +4060,7 @@ export namespace Prisma {
     userId?: true
     amount?: true
     carId?: true
+    paid?: true
     _all?: true
   }
 
@@ -4136,6 +4155,7 @@ export namespace Prisma {
     userId: number
     amount: string
     carId: number
+    paid: boolean
     _count: PenaltyCountAggregateOutputType | null
     _avg: PenaltyAvgAggregateOutputType | null
     _sum: PenaltySumAggregateOutputType | null
@@ -4162,6 +4182,7 @@ export namespace Prisma {
     userId?: boolean
     amount?: boolean
     carId?: boolean
+    paid?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     car?: boolean | CarDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["penalty"]>
@@ -4171,6 +4192,7 @@ export namespace Prisma {
     userId?: boolean
     amount?: boolean
     carId?: boolean
+    paid?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     car?: boolean | CarDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["penalty"]>
@@ -4180,6 +4202,7 @@ export namespace Prisma {
     userId?: boolean
     amount?: boolean
     carId?: boolean
+    paid?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     car?: boolean | CarDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["penalty"]>
@@ -4189,9 +4212,10 @@ export namespace Prisma {
     userId?: boolean
     amount?: boolean
     carId?: boolean
+    paid?: boolean
   }
 
-  export type PenaltyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "amount" | "carId", ExtArgs["result"]["penalty"]>
+  export type PenaltyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "amount" | "carId" | "paid", ExtArgs["result"]["penalty"]>
   export type PenaltyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     car?: boolean | CarDefaultArgs<ExtArgs>
@@ -4216,6 +4240,7 @@ export namespace Prisma {
       userId: number
       amount: string
       carId: number
+      paid: boolean
     }, ExtArgs["result"]["penalty"]>
     composites: {}
   }
@@ -4645,6 +4670,7 @@ export namespace Prisma {
     readonly userId: FieldRef<"Penalty", 'Int'>
     readonly amount: FieldRef<"Penalty", 'String'>
     readonly carId: FieldRef<"Penalty", 'Int'>
+    readonly paid: FieldRef<"Penalty", 'Boolean'>
   }
     
 
@@ -9829,18 +9855,21 @@ export namespace Prisma {
     id: number | null
     transportId: number | null
     callCenterId: number | null
+    message: string | null
   }
 
   export type NotificationMaxAggregateOutputType = {
     id: number | null
     transportId: number | null
     callCenterId: number | null
+    message: string | null
   }
 
   export type NotificationCountAggregateOutputType = {
     id: number
     transportId: number
     callCenterId: number
+    message: number
     _all: number
   }
 
@@ -9861,18 +9890,21 @@ export namespace Prisma {
     id?: true
     transportId?: true
     callCenterId?: true
+    message?: true
   }
 
   export type NotificationMaxAggregateInputType = {
     id?: true
     transportId?: true
     callCenterId?: true
+    message?: true
   }
 
   export type NotificationCountAggregateInputType = {
     id?: true
     transportId?: true
     callCenterId?: true
+    message?: true
     _all?: true
   }
 
@@ -9966,6 +9998,7 @@ export namespace Prisma {
     id: number
     transportId: number
     callCenterId: number
+    message: string
     _count: NotificationCountAggregateOutputType | null
     _avg: NotificationAvgAggregateOutputType | null
     _sum: NotificationSumAggregateOutputType | null
@@ -9991,6 +10024,7 @@ export namespace Prisma {
     id?: boolean
     transportId?: boolean
     callCenterId?: boolean
+    message?: boolean
     transport?: boolean | TransportDefaultArgs<ExtArgs>
     callCenter?: boolean | CallCenterDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["notification"]>
@@ -9999,6 +10033,7 @@ export namespace Prisma {
     id?: boolean
     transportId?: boolean
     callCenterId?: boolean
+    message?: boolean
     transport?: boolean | TransportDefaultArgs<ExtArgs>
     callCenter?: boolean | CallCenterDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["notification"]>
@@ -10007,6 +10042,7 @@ export namespace Prisma {
     id?: boolean
     transportId?: boolean
     callCenterId?: boolean
+    message?: boolean
     transport?: boolean | TransportDefaultArgs<ExtArgs>
     callCenter?: boolean | CallCenterDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["notification"]>
@@ -10015,9 +10051,10 @@ export namespace Prisma {
     id?: boolean
     transportId?: boolean
     callCenterId?: boolean
+    message?: boolean
   }
 
-  export type NotificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "transportId" | "callCenterId", ExtArgs["result"]["notification"]>
+  export type NotificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "transportId" | "callCenterId" | "message", ExtArgs["result"]["notification"]>
   export type NotificationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     transport?: boolean | TransportDefaultArgs<ExtArgs>
     callCenter?: boolean | CallCenterDefaultArgs<ExtArgs>
@@ -10041,6 +10078,7 @@ export namespace Prisma {
       id: number
       transportId: number
       callCenterId: number
+      message: string
     }, ExtArgs["result"]["notification"]>
     composites: {}
   }
@@ -10469,6 +10507,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Notification", 'Int'>
     readonly transportId: FieldRef<"Notification", 'Int'>
     readonly callCenterId: FieldRef<"Notification", 'Int'>
+    readonly message: FieldRef<"Notification", 'String'>
   }
     
 
@@ -10902,7 +10941,8 @@ export namespace Prisma {
     firstName: 'firstName',
     lastName: 'lastName',
     register: 'register',
-    location: 'location'
+    location: 'location',
+    phoneNumber: 'phoneNumber'
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
@@ -10921,7 +10961,8 @@ export namespace Prisma {
     id: 'id',
     userId: 'userId',
     amount: 'amount',
-    carId: 'carId'
+    carId: 'carId',
+    paid: 'paid'
   };
 
   export type PenaltyScalarFieldEnum = (typeof PenaltyScalarFieldEnum)[keyof typeof PenaltyScalarFieldEnum]
@@ -10988,7 +11029,8 @@ export namespace Prisma {
   export const NotificationScalarFieldEnum: {
     id: 'id',
     transportId: 'transportId',
-    callCenterId: 'callCenterId'
+    callCenterId: 'callCenterId',
+    message: 'message'
   };
 
   export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
@@ -11060,6 +11102,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
@@ -11098,13 +11147,6 @@ export namespace Prisma {
    * Reference to a field of type 'WheelPosition[]'
    */
   export type ListEnumWheelPositionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WheelPosition[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -11148,6 +11190,7 @@ export namespace Prisma {
     lastName?: StringFilter<"User"> | string
     register?: StringFilter<"User"> | string
     location?: StringFilter<"User"> | string
+    phoneNumber?: StringFilter<"User"> | string
     penalty?: PenaltyListRelationFilter
     transport?: TransportListRelationFilter
     notifications?: PermissionNotificationListRelationFilter
@@ -11159,6 +11202,7 @@ export namespace Prisma {
     lastName?: SortOrder
     register?: SortOrder
     location?: SortOrder
+    phoneNumber?: SortOrder
     penalty?: PenaltyOrderByRelationAggregateInput
     transport?: TransportOrderByRelationAggregateInput
     notifications?: PermissionNotificationOrderByRelationAggregateInput
@@ -11166,17 +11210,18 @@ export namespace Prisma {
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    register?: string
+    phoneNumber?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     firstName?: StringFilter<"User"> | string
     lastName?: StringFilter<"User"> | string
-    register?: StringFilter<"User"> | string
     location?: StringFilter<"User"> | string
     penalty?: PenaltyListRelationFilter
     transport?: TransportListRelationFilter
     notifications?: PermissionNotificationListRelationFilter
-  }, "id">
+  }, "id" | "register" | "phoneNumber">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
@@ -11184,6 +11229,7 @@ export namespace Prisma {
     lastName?: SortOrder
     register?: SortOrder
     location?: SortOrder
+    phoneNumber?: SortOrder
     _count?: UserCountOrderByAggregateInput
     _avg?: UserAvgOrderByAggregateInput
     _max?: UserMaxOrderByAggregateInput
@@ -11200,6 +11246,7 @@ export namespace Prisma {
     lastName?: StringWithAggregatesFilter<"User"> | string
     register?: StringWithAggregatesFilter<"User"> | string
     location?: StringWithAggregatesFilter<"User"> | string
+    phoneNumber?: StringWithAggregatesFilter<"User"> | string
   }
 
   export type PermissionNotificationWhereInput = {
@@ -11257,6 +11304,7 @@ export namespace Prisma {
     userId?: IntFilter<"Penalty"> | number
     amount?: StringFilter<"Penalty"> | string
     carId?: IntFilter<"Penalty"> | number
+    paid?: BoolFilter<"Penalty"> | boolean
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     car?: XOR<CarScalarRelationFilter, CarWhereInput>
   }
@@ -11266,6 +11314,7 @@ export namespace Prisma {
     userId?: SortOrder
     amount?: SortOrder
     carId?: SortOrder
+    paid?: SortOrder
     user?: UserOrderByWithRelationInput
     car?: CarOrderByWithRelationInput
   }
@@ -11278,6 +11327,7 @@ export namespace Prisma {
     userId?: IntFilter<"Penalty"> | number
     amount?: StringFilter<"Penalty"> | string
     carId?: IntFilter<"Penalty"> | number
+    paid?: BoolFilter<"Penalty"> | boolean
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     car?: XOR<CarScalarRelationFilter, CarWhereInput>
   }, "id">
@@ -11287,6 +11337,7 @@ export namespace Prisma {
     userId?: SortOrder
     amount?: SortOrder
     carId?: SortOrder
+    paid?: SortOrder
     _count?: PenaltyCountOrderByAggregateInput
     _avg?: PenaltyAvgOrderByAggregateInput
     _max?: PenaltyMaxOrderByAggregateInput
@@ -11302,6 +11353,7 @@ export namespace Prisma {
     userId?: IntWithAggregatesFilter<"Penalty"> | number
     amount?: StringWithAggregatesFilter<"Penalty"> | string
     carId?: IntWithAggregatesFilter<"Penalty"> | number
+    paid?: BoolWithAggregatesFilter<"Penalty"> | boolean
   }
 
   export type CarWhereInput = {
@@ -11627,6 +11679,7 @@ export namespace Prisma {
     id?: IntFilter<"Notification"> | number
     transportId?: IntFilter<"Notification"> | number
     callCenterId?: IntFilter<"Notification"> | number
+    message?: StringFilter<"Notification"> | string
     transport?: XOR<TransportScalarRelationFilter, TransportWhereInput>
     callCenter?: XOR<CallCenterScalarRelationFilter, CallCenterWhereInput>
   }
@@ -11635,6 +11688,7 @@ export namespace Prisma {
     id?: SortOrder
     transportId?: SortOrder
     callCenterId?: SortOrder
+    message?: SortOrder
     transport?: TransportOrderByWithRelationInput
     callCenter?: CallCenterOrderByWithRelationInput
   }
@@ -11646,6 +11700,7 @@ export namespace Prisma {
     NOT?: NotificationWhereInput | NotificationWhereInput[]
     transportId?: IntFilter<"Notification"> | number
     callCenterId?: IntFilter<"Notification"> | number
+    message?: StringFilter<"Notification"> | string
     transport?: XOR<TransportScalarRelationFilter, TransportWhereInput>
     callCenter?: XOR<CallCenterScalarRelationFilter, CallCenterWhereInput>
   }, "id">
@@ -11654,6 +11709,7 @@ export namespace Prisma {
     id?: SortOrder
     transportId?: SortOrder
     callCenterId?: SortOrder
+    message?: SortOrder
     _count?: NotificationCountOrderByAggregateInput
     _avg?: NotificationAvgOrderByAggregateInput
     _max?: NotificationMaxOrderByAggregateInput
@@ -11668,6 +11724,7 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"Notification"> | number
     transportId?: IntWithAggregatesFilter<"Notification"> | number
     callCenterId?: IntWithAggregatesFilter<"Notification"> | number
+    message?: StringWithAggregatesFilter<"Notification"> | string
   }
 
   export type UserCreateInput = {
@@ -11675,6 +11732,7 @@ export namespace Prisma {
     lastName: string
     register: string
     location: string
+    phoneNumber: string
     penalty?: PenaltyCreateNestedManyWithoutUserInput
     transport?: TransportCreateNestedManyWithoutUserInput
     notifications?: PermissionNotificationCreateNestedManyWithoutUserInput
@@ -11686,6 +11744,7 @@ export namespace Prisma {
     lastName: string
     register: string
     location: string
+    phoneNumber: string
     penalty?: PenaltyUncheckedCreateNestedManyWithoutUserInput
     transport?: TransportUncheckedCreateNestedManyWithoutUserInput
     notifications?: PermissionNotificationUncheckedCreateNestedManyWithoutUserInput
@@ -11696,6 +11755,7 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     register?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     penalty?: PenaltyUpdateManyWithoutUserNestedInput
     transport?: TransportUpdateManyWithoutUserNestedInput
     notifications?: PermissionNotificationUpdateManyWithoutUserNestedInput
@@ -11707,6 +11767,7 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     register?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     penalty?: PenaltyUncheckedUpdateManyWithoutUserNestedInput
     transport?: TransportUncheckedUpdateManyWithoutUserNestedInput
     notifications?: PermissionNotificationUncheckedUpdateManyWithoutUserNestedInput
@@ -11718,6 +11779,7 @@ export namespace Prisma {
     lastName: string
     register: string
     location: string
+    phoneNumber: string
   }
 
   export type UserUpdateManyMutationInput = {
@@ -11725,6 +11787,7 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     register?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserUncheckedUpdateManyInput = {
@@ -11733,6 +11796,7 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     register?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
   }
 
   export type PermissionNotificationCreateInput = {
@@ -11775,6 +11839,7 @@ export namespace Prisma {
 
   export type PenaltyCreateInput = {
     amount: string
+    paid?: boolean
     user: UserCreateNestedOneWithoutPenaltyInput
     car: CarCreateNestedOneWithoutPenaltiesInput
   }
@@ -11784,10 +11849,12 @@ export namespace Prisma {
     userId: number
     amount: string
     carId: number
+    paid?: boolean
   }
 
   export type PenaltyUpdateInput = {
     amount?: StringFieldUpdateOperationsInput | string
+    paid?: BoolFieldUpdateOperationsInput | boolean
     user?: UserUpdateOneRequiredWithoutPenaltyNestedInput
     car?: CarUpdateOneRequiredWithoutPenaltiesNestedInput
   }
@@ -11797,6 +11864,7 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     amount?: StringFieldUpdateOperationsInput | string
     carId?: IntFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PenaltyCreateManyInput = {
@@ -11804,10 +11872,12 @@ export namespace Prisma {
     userId: number
     amount: string
     carId: number
+    paid?: boolean
   }
 
   export type PenaltyUpdateManyMutationInput = {
     amount?: StringFieldUpdateOperationsInput | string
+    paid?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PenaltyUncheckedUpdateManyInput = {
@@ -11815,6 +11885,7 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     amount?: StringFieldUpdateOperationsInput | string
     carId?: IntFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type CarCreateInput = {
@@ -12153,6 +12224,7 @@ export namespace Prisma {
   }
 
   export type NotificationCreateInput = {
+    message: string
     transport: TransportCreateNestedOneWithoutNotificationsInput
     callCenter: CallCenterCreateNestedOneWithoutNotificationsInput
   }
@@ -12161,9 +12233,11 @@ export namespace Prisma {
     id?: number
     transportId: number
     callCenterId: number
+    message: string
   }
 
   export type NotificationUpdateInput = {
+    message?: StringFieldUpdateOperationsInput | string
     transport?: TransportUpdateOneRequiredWithoutNotificationsNestedInput
     callCenter?: CallCenterUpdateOneRequiredWithoutNotificationsNestedInput
   }
@@ -12172,22 +12246,25 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     transportId?: IntFieldUpdateOperationsInput | number
     callCenterId?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
   }
 
   export type NotificationCreateManyInput = {
     id?: number
     transportId: number
     callCenterId: number
+    message: string
   }
 
   export type NotificationUpdateManyMutationInput = {
-
+    message?: StringFieldUpdateOperationsInput | string
   }
 
   export type NotificationUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     transportId?: IntFieldUpdateOperationsInput | number
     callCenterId?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -12252,6 +12329,7 @@ export namespace Prisma {
     lastName?: SortOrder
     register?: SortOrder
     location?: SortOrder
+    phoneNumber?: SortOrder
   }
 
   export type UserAvgOrderByAggregateInput = {
@@ -12264,6 +12342,7 @@ export namespace Prisma {
     lastName?: SortOrder
     register?: SortOrder
     location?: SortOrder
+    phoneNumber?: SortOrder
   }
 
   export type UserMinOrderByAggregateInput = {
@@ -12272,6 +12351,7 @@ export namespace Prisma {
     lastName?: SortOrder
     register?: SortOrder
     location?: SortOrder
+    phoneNumber?: SortOrder
   }
 
   export type UserSumOrderByAggregateInput = {
@@ -12345,6 +12425,11 @@ export namespace Prisma {
     userId?: SortOrder
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type CarScalarRelationFilter = {
     is?: CarWhereInput
     isNot?: CarWhereInput
@@ -12355,6 +12440,7 @@ export namespace Prisma {
     userId?: SortOrder
     amount?: SortOrder
     carId?: SortOrder
+    paid?: SortOrder
   }
 
   export type PenaltyAvgOrderByAggregateInput = {
@@ -12368,6 +12454,7 @@ export namespace Prisma {
     userId?: SortOrder
     amount?: SortOrder
     carId?: SortOrder
+    paid?: SortOrder
   }
 
   export type PenaltyMinOrderByAggregateInput = {
@@ -12375,12 +12462,21 @@ export namespace Prisma {
     userId?: SortOrder
     amount?: SortOrder
     carId?: SortOrder
+    paid?: SortOrder
   }
 
   export type PenaltySumOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
     carId?: SortOrder
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type DateTimeFilter<$PrismaModel = never> = {
@@ -12532,11 +12628,6 @@ export namespace Prisma {
     _max?: NestedEnumWheelPositionFilter<$PrismaModel>
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type AreaListRelationFilter = {
     every?: AreaWhereInput
     some?: AreaWhereInput
@@ -12591,14 +12682,6 @@ export namespace Prisma {
     id?: SortOrder
     userId?: SortOrder
     carId?: SortOrder
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type AreaScalarRelationFilter = {
@@ -12731,6 +12814,7 @@ export namespace Prisma {
     id?: SortOrder
     transportId?: SortOrder
     callCenterId?: SortOrder
+    message?: SortOrder
   }
 
   export type NotificationAvgOrderByAggregateInput = {
@@ -12743,12 +12827,14 @@ export namespace Prisma {
     id?: SortOrder
     transportId?: SortOrder
     callCenterId?: SortOrder
+    message?: SortOrder
   }
 
   export type NotificationMinOrderByAggregateInput = {
     id?: SortOrder
     transportId?: SortOrder
     callCenterId?: SortOrder
+    message?: SortOrder
   }
 
   export type NotificationSumOrderByAggregateInput = {
@@ -12921,6 +13007,10 @@ export namespace Prisma {
     connect?: CarWhereUniqueInput
   }
 
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
   export type UserUpdateOneRequiredWithoutPenaltyNestedInput = {
     create?: XOR<UserCreateWithoutPenaltyInput, UserUncheckedCreateWithoutPenaltyInput>
     connectOrCreate?: UserCreateOrConnectWithoutPenaltyInput
@@ -13069,10 +13159,6 @@ export namespace Prisma {
     connectOrCreate?: NotificationCreateOrConnectWithoutTransportInput | NotificationCreateOrConnectWithoutTransportInput[]
     createMany?: NotificationCreateManyTransportInputEnvelope
     connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
   }
 
   export type UserUpdateOneRequiredWithoutTransportNestedInput = {
@@ -13378,6 +13464,19 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -13436,19 +13535,6 @@ export namespace Prisma {
     _min?: NestedEnumWheelPositionFilter<$PrismaModel>
     _max?: NestedEnumWheelPositionFilter<$PrismaModel>
   }
-
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
-  }
   export type NestedJsonFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
@@ -13475,6 +13561,7 @@ export namespace Prisma {
 
   export type PenaltyCreateWithoutUserInput = {
     amount: string
+    paid?: boolean
     car: CarCreateNestedOneWithoutPenaltiesInput
   }
 
@@ -13482,6 +13569,7 @@ export namespace Prisma {
     id?: number
     amount: string
     carId: number
+    paid?: boolean
   }
 
   export type PenaltyCreateOrConnectWithoutUserInput = {
@@ -13564,6 +13652,7 @@ export namespace Prisma {
     userId?: IntFilter<"Penalty"> | number
     amount?: StringFilter<"Penalty"> | string
     carId?: IntFilter<"Penalty"> | number
+    paid?: BoolFilter<"Penalty"> | boolean
   }
 
   export type TransportUpsertWithWhereUniqueWithoutUserInput = {
@@ -13623,6 +13712,7 @@ export namespace Prisma {
     lastName: string
     register: string
     location: string
+    phoneNumber: string
     penalty?: PenaltyCreateNestedManyWithoutUserInput
     transport?: TransportCreateNestedManyWithoutUserInput
   }
@@ -13633,6 +13723,7 @@ export namespace Prisma {
     lastName: string
     register: string
     location: string
+    phoneNumber: string
     penalty?: PenaltyUncheckedCreateNestedManyWithoutUserInput
     transport?: TransportUncheckedCreateNestedManyWithoutUserInput
   }
@@ -13658,6 +13749,7 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     register?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     penalty?: PenaltyUpdateManyWithoutUserNestedInput
     transport?: TransportUpdateManyWithoutUserNestedInput
   }
@@ -13668,6 +13760,7 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     register?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     penalty?: PenaltyUncheckedUpdateManyWithoutUserNestedInput
     transport?: TransportUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -13677,6 +13770,7 @@ export namespace Prisma {
     lastName: string
     register: string
     location: string
+    phoneNumber: string
     transport?: TransportCreateNestedManyWithoutUserInput
     notifications?: PermissionNotificationCreateNestedManyWithoutUserInput
   }
@@ -13687,6 +13781,7 @@ export namespace Prisma {
     lastName: string
     register: string
     location: string
+    phoneNumber: string
     transport?: TransportUncheckedCreateNestedManyWithoutUserInput
     notifications?: PermissionNotificationUncheckedCreateNestedManyWithoutUserInput
   }
@@ -13770,6 +13865,7 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     register?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     transport?: TransportUpdateManyWithoutUserNestedInput
     notifications?: PermissionNotificationUpdateManyWithoutUserNestedInput
   }
@@ -13780,6 +13876,7 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     register?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     transport?: TransportUncheckedUpdateManyWithoutUserNestedInput
     notifications?: PermissionNotificationUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -13850,6 +13947,7 @@ export namespace Prisma {
 
   export type PenaltyCreateWithoutCarInput = {
     amount: string
+    paid?: boolean
     user: UserCreateNestedOneWithoutPenaltyInput
   }
 
@@ -13857,6 +13955,7 @@ export namespace Prisma {
     id?: number
     userId: number
     amount: string
+    paid?: boolean
   }
 
   export type PenaltyCreateOrConnectWithoutCarInput = {
@@ -13933,6 +14032,7 @@ export namespace Prisma {
     lastName: string
     register: string
     location: string
+    phoneNumber: string
     penalty?: PenaltyCreateNestedManyWithoutUserInput
     notifications?: PermissionNotificationCreateNestedManyWithoutUserInput
   }
@@ -13943,6 +14043,7 @@ export namespace Prisma {
     lastName: string
     register: string
     location: string
+    phoneNumber: string
     penalty?: PenaltyUncheckedCreateNestedManyWithoutUserInput
     notifications?: PermissionNotificationUncheckedCreateNestedManyWithoutUserInput
   }
@@ -14027,12 +14128,14 @@ export namespace Prisma {
   }
 
   export type NotificationCreateWithoutTransportInput = {
+    message: string
     callCenter: CallCenterCreateNestedOneWithoutNotificationsInput
   }
 
   export type NotificationUncheckedCreateWithoutTransportInput = {
     id?: number
     callCenterId: number
+    message: string
   }
 
   export type NotificationCreateOrConnectWithoutTransportInput = {
@@ -14061,6 +14164,7 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     register?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     penalty?: PenaltyUpdateManyWithoutUserNestedInput
     notifications?: PermissionNotificationUpdateManyWithoutUserNestedInput
   }
@@ -14071,6 +14175,7 @@ export namespace Prisma {
     lastName?: StringFieldUpdateOperationsInput | string
     register?: StringFieldUpdateOperationsInput | string
     location?: StringFieldUpdateOperationsInput | string
+    phoneNumber?: StringFieldUpdateOperationsInput | string
     penalty?: PenaltyUncheckedUpdateManyWithoutUserNestedInput
     notifications?: PermissionNotificationUncheckedUpdateManyWithoutUserNestedInput
   }
@@ -14186,6 +14291,7 @@ export namespace Prisma {
     id?: IntFilter<"Notification"> | number
     transportId?: IntFilter<"Notification"> | number
     callCenterId?: IntFilter<"Notification"> | number
+    message?: StringFilter<"Notification"> | string
   }
 
   export type AreaCreateWithoutCallCentersInput = {
@@ -14205,12 +14311,14 @@ export namespace Prisma {
   }
 
   export type NotificationCreateWithoutCallCenterInput = {
+    message: string
     transport: TransportCreateNestedOneWithoutNotificationsInput
   }
 
   export type NotificationUncheckedCreateWithoutCallCenterInput = {
     id?: number
     transportId: number
+    message: string
   }
 
   export type NotificationCreateOrConnectWithoutCallCenterInput = {
@@ -14444,6 +14552,7 @@ export namespace Prisma {
     id?: number
     amount: string
     carId: number
+    paid?: boolean
   }
 
   export type TransportCreateManyUserInput = {
@@ -14460,6 +14569,7 @@ export namespace Prisma {
 
   export type PenaltyUpdateWithoutUserInput = {
     amount?: StringFieldUpdateOperationsInput | string
+    paid?: BoolFieldUpdateOperationsInput | boolean
     car?: CarUpdateOneRequiredWithoutPenaltiesNestedInput
   }
 
@@ -14467,12 +14577,14 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     amount?: StringFieldUpdateOperationsInput | string
     carId?: IntFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PenaltyUncheckedUpdateManyWithoutUserInput = {
     id?: IntFieldUpdateOperationsInput | number
     amount?: StringFieldUpdateOperationsInput | string
     carId?: IntFieldUpdateOperationsInput | number
+    paid?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TransportUpdateWithoutUserInput = {
@@ -14517,6 +14629,7 @@ export namespace Prisma {
     id?: number
     userId: number
     amount: string
+    paid?: boolean
   }
 
   export type TransportCreateManyCarInput = {
@@ -14528,6 +14641,7 @@ export namespace Prisma {
 
   export type PenaltyUpdateWithoutCarInput = {
     amount?: StringFieldUpdateOperationsInput | string
+    paid?: BoolFieldUpdateOperationsInput | boolean
     user?: UserUpdateOneRequiredWithoutPenaltyNestedInput
   }
 
@@ -14535,12 +14649,14 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     amount?: StringFieldUpdateOperationsInput | string
+    paid?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type PenaltyUncheckedUpdateManyWithoutCarInput = {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     amount?: StringFieldUpdateOperationsInput | string
+    paid?: BoolFieldUpdateOperationsInput | boolean
   }
 
   export type TransportUpdateWithoutCarInput = {
@@ -14570,6 +14686,7 @@ export namespace Prisma {
   export type NotificationCreateManyTransportInput = {
     id?: number
     callCenterId: number
+    message: string
   }
 
   export type AreaUpdateWithoutTransportsInput = {
@@ -14589,36 +14706,43 @@ export namespace Prisma {
   }
 
   export type NotificationUpdateWithoutTransportInput = {
+    message?: StringFieldUpdateOperationsInput | string
     callCenter?: CallCenterUpdateOneRequiredWithoutNotificationsNestedInput
   }
 
   export type NotificationUncheckedUpdateWithoutTransportInput = {
     id?: IntFieldUpdateOperationsInput | number
     callCenterId?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
   }
 
   export type NotificationUncheckedUpdateManyWithoutTransportInput = {
     id?: IntFieldUpdateOperationsInput | number
     callCenterId?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
   }
 
   export type NotificationCreateManyCallCenterInput = {
     id?: number
     transportId: number
+    message: string
   }
 
   export type NotificationUpdateWithoutCallCenterInput = {
+    message?: StringFieldUpdateOperationsInput | string
     transport?: TransportUpdateOneRequiredWithoutNotificationsNestedInput
   }
 
   export type NotificationUncheckedUpdateWithoutCallCenterInput = {
     id?: IntFieldUpdateOperationsInput | number
     transportId?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
   }
 
   export type NotificationUncheckedUpdateManyWithoutCallCenterInput = {
     id?: IntFieldUpdateOperationsInput | number
     transportId?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
   }
 
   export type CallCenterCreateManyAreaInput = {
