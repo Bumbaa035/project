@@ -4,6 +4,7 @@ import { MaterialIcons, MaterialCommunityIcons } from "@expo/vector-icons";
 import LottieView from "lottie-react-native";
 import { LineChart } from "react-native-chart-kit";
 import { useRouter } from "expo-router";
+import { useActiveTransport } from "../context/ActiveTransportContext";
 
 const user = {
   name: "Бат-Эрдэнэ",
@@ -30,6 +31,7 @@ export default function DashboardPage() {
   const [serialNumberLetters, setSerialNumberLetters] = useState("");
   const lettersInputRef = useRef<TextInput>(null);
   const router = useRouter();
+  const { activeTransport } = useActiveTransport();
 
   const paidPercent = fines.length === 0 ? 0 : Math.round((fines.filter(f => f.paid).length / fines.length) * 100);
 
@@ -37,7 +39,6 @@ export default function DashboardPage() {
     setShowModal(true);
   };
 
-  
   const handleAddTransport = () => {
     const serial = serialNumberDigits + serialNumberLetters;
     if (serialNumberDigits.length !== 4 || !/^[0-9]{4}$/.test(serialNumberDigits)) {
@@ -160,10 +161,12 @@ export default function DashboardPage() {
         </View>
 
         {/* Start Transport Button */}
-        <TouchableOpacity style={styles.startBtn} onPress={handleStartTransport} activeOpacity={0.85}>
-          <MaterialIcons name="play-arrow" size={26} color="#fff" />
-          <Text style={styles.startBtnText}>Тээвэрлэлт эхлүүлэх</Text>
-        </TouchableOpacity>
+        {!activeTransport && (
+          <TouchableOpacity style={styles.startBtn} onPress={handleStartTransport} activeOpacity={0.85}>
+            <MaterialIcons name="play-arrow" size={26} color="#fff" />
+            <Text style={styles.startBtnText}>Тээвэрлэлт эхлүүлэх</Text>
+          </TouchableOpacity>
+        )}
       </ScrollView>
 
       {/* Серийн дугаар оруулах modal */}

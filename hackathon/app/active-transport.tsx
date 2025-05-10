@@ -4,20 +4,7 @@ import MapView, { Polygon } from "react-native-maps";
 import { useRouter } from "expo-router";
 import * as Location from 'expo-location';
 import { MaterialIcons } from "@expo/vector-icons";
-import io from 'socket.io-client';
 
-const restrictedZone = [
-  { latitude: 47.9186, longitude: 106.8530 },
-  { latitude: 47.9226, longitude: 106.8570 },
-  { latitude: 47.9286, longitude: 106.9595 },
-  { latitude: 47.8970, longitude: 106.9445 },
-  { latitude: 47.8990, longitude: 106.9345 },
-  { latitude: 47.8960, longitude: 106.8875 },
-  { latitude: 47.8910, longitude: 106.8725 },
-  { latitude: 47.8970, longitude: 106.8570 },
-
-
-];
 const sections = [
   {
     label: "Торгуулиуд харах",
@@ -48,6 +35,7 @@ const sections = [
 
 export default function ActiveTransportPage() {
   const router = useRouter();
+  const { setActiveTransport } = useActiveTransport();
 
   const [location, setLocation] = useState(null);
   const [socket, setSocket] = useState(null);
@@ -112,37 +100,24 @@ return (
             latitudeDelta: 0.005,
             longitudeDelta: 0.005,
           }}
-          showsUserLocation={true}
-        >
-          <Polygon
-            coordinates={restrictedZone}
-            fillColor="rgba(255,0,0,0.3)"
-            strokeColor="red"
-            strokeWidth={2}
-          />
-        </MapView>
-      ) : (
-        <View style={[styles.map, { justifyContent: 'center', alignItems: 'center' }]}>
-          <Text>Байршил ачаалж байна...</Text>
-        </View>
-      )}
+        />
+      </View>
+      {/* Bottom 60%: Info and buttons */}
+      <View style={styles.bottomSheet}>
+        {sections.map((section, idx) => (
+          <TouchableOpacity
+            key={section.label}
+            style={styles.sectionButton}
+            activeOpacity={0.85}
+            onPress={() => section.onPress(router)}
+          >
+            <MaterialIcons name={section.icon as any} size={24} color="#3949ab" style={{ marginRight: 12 }} />
+            <Text style={styles.sectionTitle}>{section.label}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
     </View>
-    {/* Bottom 60%: Info and buttons */}
-    <View style={styles.bottomSheet}>
-      {sections.map((section) => (
-        <TouchableOpacity
-          key={section.label}
-          style={styles.sectionButton}
-          activeOpacity={0.85}
-          onPress={() => section.onPress(router)}
-        >
-          <MaterialIcons name={section.icon as any} size={24} color="#3949ab" style={{ marginRight: 12 }} />
-          <Text style={styles.sectionTitle}>{section.label}</Text>
-        </TouchableOpacity>
-      ))}
-    </View>
-  </View>
-);
+  );
 }
 
 const styles = StyleSheet.create({
@@ -175,6 +150,4 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: "left",
   },
-  
-  map: { flex: 1 },
 });
