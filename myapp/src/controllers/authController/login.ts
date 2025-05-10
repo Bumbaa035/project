@@ -21,7 +21,7 @@ export const login = async (
     if (!matched) {
       res.status(401).json({
         success: false,
-        message: "Invalid credentials. Please check your password.",
+        message: "Invalid credentials. Please check your entered information.",
       });
       return;
     }
