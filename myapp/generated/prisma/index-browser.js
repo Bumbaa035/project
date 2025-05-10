@@ -125,6 +125,8 @@ exports.Prisma.UserScalarFieldEnum = {
   firstName: 'firstName',
   lastName: 'lastName',
   register: 'register',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   location: 'location',
   phoneNumber: 'phoneNumber',
   password: 'password',
@@ -134,13 +136,17 @@ exports.Prisma.UserScalarFieldEnum = {
 exports.Prisma.PermissionNotificationScalarFieldEnum = {
   id: 'id',
   message: 'message',
-  userId: 'userId'
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.PenaltyScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
   amount: 'amount',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
   carId: 'carId',
   paid: 'paid'
 };
@@ -168,7 +174,9 @@ exports.Prisma.CarScalarFieldEnum = {
   type: 'type',
   wheelPosition: 'wheelPosition',
   width: 'width',
-  location: 'location'
+  location: 'location',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.TransportScalarFieldEnum = {
@@ -176,26 +184,34 @@ exports.Prisma.TransportScalarFieldEnum = {
   userId: 'userId',
   carId: 'carId',
   status: 'status',
-  destination: 'destination'
+  destination: 'destination',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.CallCenterScalarFieldEnum = {
   id: 'id',
   email: 'email',
   password: 'password',
-  areaId: 'areaId'
+  areaId: 'areaId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.AreaScalarFieldEnum = {
   id: 'id',
-  area: 'area'
+  area: 'area',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.NotificationScalarFieldEnum = {
   id: 'id',
   transportId: 'transportId',
   callCenterId: 'callCenterId',
-  message: 'message'
+  message: 'message',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
 };
 
 exports.Prisma.SortOrder = {
