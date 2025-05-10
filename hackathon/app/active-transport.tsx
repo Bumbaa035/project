@@ -1,8 +1,40 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import MapView from "react-native-maps";
+import { useRouter } from "expo-router";
+import { MaterialIcons } from "@expo/vector-icons";
+
+const sections = [
+  {
+    label: "Торгуулиуд харах",
+    icon: "gavel",
+    onPress: (router: any) => {}, // TODO: add navigation
+  },
+  {
+    label: "Хэрэглэгчийн мэдээлэл",
+    icon: "person",
+    onPress: (router: any) => router.push("/user-info"),
+  },
+  {
+    label: "Машины мэдээлэл",
+    icon: "directions-car",
+    onPress: (router: any) => router.push("/car-info"),
+  },
+  {
+    label: "Тээвэрлэлтүүдийн түүх",
+    icon: "history",
+    onPress: (router: any) => {}, // TODO: add navigation
+  },
+  {
+    label: "Цаг агаар",
+    icon: "wb-sunny",
+    onPress: (router: any) => {}, // TODO: add navigation
+  },
+];
 
 export default function ActiveTransportPage() {
+  const router = useRouter();
+
   return (
     <View style={{ flex: 1 }}>
       {/* Top 40%: Map */}
@@ -18,42 +50,51 @@ export default function ActiveTransportPage() {
         />
       </View>
       {/* Bottom 60%: Info and buttons */}
-      <View style={{ flex: 6, backgroundColor: "#fff", borderTopLeftRadius: 24, borderTopRightRadius: 24, padding: 18 }}>
-        <TouchableOpacity style={styles.fineBtn}>
-          <Text style={styles.fineBtnText}>Торгуулиуд харах</Text>
-        </TouchableOpacity>
-        {/* User info, car info, transport history, weather sections */}
-        <Text style={styles.sectionTitle}>Хэрэглэгчийн мэдээлэл</Text>
-        {/* ... */}
-        <Text style={styles.sectionTitle}>Машины мэдээлэл</Text>
-        {/* ... */}
-        <Text style={styles.sectionTitle}>Тээвэрлэлтүүдийн түүх</Text>
-        {/* ... */}
-        <Text style={styles.sectionTitle}>Цаг агаар</Text>
-        {/* ... */}
+      <View style={styles.bottomSheet}>
+        {sections.map((section, idx) => (
+          <TouchableOpacity
+            key={section.label}
+            style={styles.sectionButton}
+            activeOpacity={0.85}
+            onPress={() => section.onPress(router)}
+          >
+            <MaterialIcons name={section.icon as any} size={24} color="#3949ab" style={{ marginRight: 12 }} />
+            <Text style={styles.sectionTitle}>{section.label}</Text>
+          </TouchableOpacity>
+        ))}
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  fineBtn: {
-    backgroundColor: "#3949ab",
-    borderRadius: 10,
-    paddingVertical: 12,
-    alignItems: "center",
-    marginBottom: 12,
+  bottomSheet: {
+    flex: 6,
+    backgroundColor: "#fff",
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+    padding: 18,
+    justifyContent: "center",
   },
-  fineBtnText: {
-    color: "#fff",
-    fontWeight: "bold",
-    fontSize: 16,
+  sectionButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#f3f6fd",
+    borderRadius: 14,
+    paddingVertical: 18,
+    paddingHorizontal: 18,
+    marginBottom: 14,
+    shadowColor: "#3949ab",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.08,
+    shadowRadius: 6,
+    elevation: 2,
   },
   sectionTitle: {
     fontWeight: "bold",
-    fontSize: 16,
-    marginTop: 10,
-    marginBottom: 4,
+    fontSize: 17,
     color: "#3949ab",
+    flex: 1,
+    textAlign: "left",
   },
 });
