@@ -17,7 +17,7 @@ const features = [
     icon: <MaterialIcons name="gps-fixed" size={32} color="#3949ab" />,
     title: 'GPS байршлын хяналт',
     desc: 'Машины байршлыг бодит цагт хянах, зөвшөөрөгдсөн маршрутаар явж буй эсэхийг шалгах.',
-    button: '/map'
+    button: '/active-transport'
   },
   {
     icon: <MaterialIcons name="notifications-active" size={32} color="#3949ab" />,
