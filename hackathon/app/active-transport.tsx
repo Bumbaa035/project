@@ -75,7 +75,7 @@ useEffect(() => {
       {
         accuracy: Location.Accuracy.High,
         timeInterval: 5000,
-        distanceInterval: 5,
+        distanceInterval: 2,
       },
       (loc) => {
         const coords = {
@@ -86,7 +86,7 @@ useEffect(() => {
 
         if (socket) {
           socket.emit("locationUpdate", {
-            userId: "2", // TODO: replace with real userId
+            userId: "", // TODO: replace with real userId
             lat: coords.latitude,
             lng: coords.longitude,
           });

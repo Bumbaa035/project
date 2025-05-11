@@ -45,6 +45,7 @@ export default function HomePage() {
 
   const handleStart = () => {
     router.push("/login");
+    // router.push("/active-transport");
   };
 
   return (

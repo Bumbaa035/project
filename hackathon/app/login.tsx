@@ -12,6 +12,7 @@ export default function LoginPage() {
     <View style={styles.container}>
       {showLogin ? (
         <>
+          {/* router.push("activeTransport") */}
           <LoginForm onLoggedIn={() => router.push("./dashboard")} />
           <TouchableOpacity onPress={() => setShowLogin(false)} style={styles.registerSwitchBtn}>
             <Text style={styles.switchText}>Шинээр бүртгүүлэх</Text>
