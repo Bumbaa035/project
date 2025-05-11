@@ -30,6 +30,10 @@ const fines = [
 export default function FineListPage() {
   const router = useRouter();
 
+  const handleBack = () => {
+    router.back();
+  };
+
   const renderItem = ({ item }: any) => (
     <View style={styles.card}>
       <View style={styles.cardInfo}>
@@ -53,6 +57,10 @@ export default function FineListPage() {
 
   return (
     <LinearGradient colors={["#3949ab", "#6a1b9a"]} style={styles.container}>
+      <TouchableOpacity style={styles.backButton} onPress={handleBack}>
+        <MaterialIcons name="arrow-back" size={24} color="#fff" />
+        <Text style={styles.backButtonText}>Буцах</Text>
+      </TouchableOpacity>
       <Text style={styles.pageTitle}>Торгуулийн жагсаалт</Text>
       <FlatList
         data={fines}
@@ -68,14 +76,31 @@ export default function FineListPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 16,
+    paddingTop: 60,
     paddingHorizontal: 16,
+  },
+  backButton: {
+    position: 'absolute',
+    top: 16,
+    left: 16,
+    zIndex: 10,
+    padding: 8,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  backButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
+    marginLeft: 4,
   },
   pageTitle: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#fff',
-    marginBottom: 16,
+    marginBottom: 20,
+    textAlign: 'center',
+    marginTop: 16,
   },
   list: {
     paddingBottom: 20,
@@ -131,4 +156,4 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: '600',
   },
-}); 
+});

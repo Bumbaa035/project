@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, TextInput, TouchableOpacity, Button, Alert, Text, StyleSheet, ActivityIndicator, ScrollView, KeyboardAvoidingView, Platform, Keyboard, TouchableWithoutFeedback } from "react-native";
+import { View, TextInput, TouchableOpacity, Button, Alert, Text, StyleSheet, ActivityIndicator, KeyboardAvoidingView, Platform, Keyboard, TouchableWithoutFeedback } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
 
 interface RegisterFormProps {
@@ -55,11 +55,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegistered }) => {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         keyboardVerticalOffset={Platform.OS === "ios" ? 60 : 0}
       >
-        <ScrollView
-          style={{ flex: 1 }}
-          contentContainerStyle={{ paddingVertical: 32 }}
-          keyboardShouldPersistTaps="handled"
-        >
+        <View style={styles.container}>
           <View style={styles.formBox}>
             <Text style={styles.title}>Бүртгүүлэх</Text>
             <Text style={styles.label}>Утас</Text>
@@ -114,25 +110,29 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegistered }) => {
               )}
             </TouchableOpacity>
           </View>
-        </ScrollView>
+        </View>
       </KeyboardAvoidingView>
     </TouchableWithoutFeedback>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: -50,
+  },
   formBox: {
     backgroundColor: '#fff',
     borderRadius: 18,
     padding: 28,
-    marginVertical: 24,
     width: 340,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.13,
     shadowRadius: 12,
     elevation: 6,
-    alignSelf: 'center',
   },
   title: {
     fontSize: 24,

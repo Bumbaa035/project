@@ -1,18 +1,17 @@
-import  React, {useEffect, useState, useRef }from "react";
-import {Alert, View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import MapView, { Polygon } from "react-native-maps";
+import React, { useEffect, useState, useRef } from "react";
+import { Alert, View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import MapView from "react-native-maps";
 import { useRouter } from "expo-router";
 import * as Location from 'expo-location';
 import { MaterialIcons } from "@expo/vector-icons";
 import { useActiveTransport } from "../context/ActiveTransportContext";
-import { io } from "socket.io-client";
-import type { Socket } from "socket.io-client";
+import { LinearGradient } from 'expo-linear-gradient';
 
 const sections = [
   {
     label: "Торгуулиуд харах",
     icon: "gavel",
-    onPress: (router: any) => {}, // TODO: add navigation
+    onPress: (router: any) => router.push("/fine"),
   },
   {
     label: "Хэрэглэгчийн мэдээлэл",
@@ -27,109 +26,121 @@ const sections = [
   {
     label: "Тээвэрлэлтүүдийн түүх",
     icon: "history",
-    onPress: (router: any) => {}, // TODO: add navigation
+    onPress: () => {}, // TODO: add navigation
   },
   {
     label: "Цаг агаар",
     icon: "wb-sunny",
-    onPress: (router: any) => {}, // TODO: add navigation
+    onPress: () => {}, // TODO: add navigation
   },
 ];
 
 export default function ActiveTransportPage() {
   const router = useRouter();
+  const [location, setLocation] = useState<Location.LocationObject | null>(null);
   const { setActiveTransport } = useActiveTransport();
 
-  const [location, setLocation] = useState<{latitude: number, longitude: number} | null>(null);
-  const [socket, setSocket] = useState<Socket | null>(null);
-
-  const locationWatcher = useRef<Location.LocationSubscription | null>(null);
-
-  useEffect(() => {
-    const newSocket = io('http://210.109.53.233:3001');
-    setSocket(newSocket);
-    // Listen for alerts from the server
-    newSocket.on('alert', (msg) => {
-      Alert.alert('⚠️ Alert', msg);
-    });
-
-    return () => {
-      newSocket.disconnect();
-    };
-  }, []);
-  
   useEffect(() => {
     (async () => {
-      const { status } = await Location.requestForegroundPermissionsAsync();
+      let { status } = await Location.requestForegroundPermissionsAsync();
       if (status !== 'granted') {
         Alert.alert('Permission to access location was denied');
         return;
       }
 
-      locationWatcher.current = await Location.watchPositionAsync(
-        {
-          accuracy: Location.Accuracy.High,
-          timeInterval: 3000,
-          distanceInterval: 5,
-        },
-        (loc) => {
-          const coords = {
-            latitude: loc.coords.latitude,
-            longitude: loc.coords.longitude
-          };
-          setLocation(coords);
+      let location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+    })();
+  }, []);
 
-          if (socket) {
-            socket.emit('locationUpdate', {
-              lat: coords.latitude,
-              lng: coords.longitude
-            });
+  const handleFinishTransport = () => {
+    Alert.alert(
+      "Тээвэрлэлт дуусгах",
+      "Тээвэрлэлтийг дуусгахдаа итгэлтэй байна уу?",
+      [
+        {
+          text: "Болих",
+          style: "cancel"
+        },
+        {
+          text: "Дуусгах",
+          onPress: () => {
+            setActiveTransport(false);
+            router.push("/dashboard");
+            router.replace("/dashboard");
           }
         }
-      );
-    })();
+      ]
+    );
+  };
 
-    return () => {
-      locationWatcher.current?.remove();
-    };
-  }, []);
-return (
-  <View style={{ flex: 1 }}>
-    {/* Top 40%: Map */}
-    <View style={{ flex: 4 }}>
-      {location ? (
-        <MapView
-          style={styles.map}
-          initialRegion={{
-            latitude: location.latitude,
-            longitude: location.longitude,
-            latitudeDelta: 0.005,
-            longitudeDelta: 0.005,
-          }}
-        />
-      ) : (
-        <View style={styles.mapPlaceholder}><Text>Байршил тодорхойлогдсонгүй</Text></View>
-      )}
-    </View>
-    {/* Bottom 60%: Info and buttons */}
-    <View style={styles.bottomSheet}>
-      {sections.map((section, idx) => (
+  return (
+    <LinearGradient colors={["#3949ab", "#6a1b9a"]} style={styles.container}>
+      <View style={styles.mapContainer}>
+        {location ? (
+          <MapView
+            style={styles.map}
+            initialRegion={{
+              latitude: location.coords.latitude,
+              longitude: location.coords.longitude,
+              latitudeDelta: 0.005,
+              longitudeDelta: 0.005,
+            }}
+          />
+        ) : (
+          <View style={styles.mapPlaceholder}>
+            <Text style={styles.mapPlaceholderText}>Байршил тодорхойлогдсонгүй</Text>
+          </View>
+        )}
+      </View>
+      <View style={styles.bottomSheet}>
+        {sections.map((section, idx) => (
+          <TouchableOpacity
+            key={section.label}
+            style={styles.sectionButton}
+            activeOpacity={0.85}
+            onPress={() => section.onPress(router)}
+          >
+            <MaterialIcons name={section.icon as any} size={24} color="#3949ab" style={{ marginRight: 12 }} />
+            <Text style={styles.sectionTitle}>{section.label}</Text>
+          </TouchableOpacity>
+        ))}
         <TouchableOpacity
-          key={section.label}
-          style={styles.sectionButton}
+          style={styles.finishButton}
           activeOpacity={0.85}
-          onPress={() => section.onPress(router)}
+          onPress={handleFinishTransport}
         >
-          <MaterialIcons name={section.icon as any} size={24} color="#3949ab" style={{ marginRight: 12 }} />
-          <Text style={styles.sectionTitle}>{section.label}</Text>
+          <MaterialIcons name="check-circle" size={24} color="#fff" style={{ marginRight: 12 }} />
+          <Text style={styles.finishButtonText}>Тээвэрлэлт дуусгах</Text>
         </TouchableOpacity>
-      ))}
-    </View>
-  </View>
-);
+      </View>
+    </LinearGradient>
+  );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  mapContainer: {
+    flex: 4,
+    margin: 16,
+    borderRadius: 12,
+    overflow: 'hidden',
+  },
+  map: {
+    flex: 1,
+  },
+  mapPlaceholder: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
+  mapPlaceholderText: {
+    color: '#666',
+    fontSize: 16,
+  },
   bottomSheet: {
     flex: 6,
     backgroundColor: "#fff",
@@ -159,12 +170,24 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: "left",
   },
-  mapPlaceholder: {
-    flex: 1,
-    justifyContent: "center",
+  finishButton: {
+    flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#6a1b9a",
+    borderRadius: 14,
+    paddingVertical: 18,
+    paddingHorizontal: 18,
+    marginTop: 10,
+    shadowColor: "#6a1b9a",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 3,
   },
-  map: {
-    flex: 1,
+  finishButtonText: {
+    fontWeight: "bold",
+    fontSize: 17,
+    color: "#fff",
   },
 });

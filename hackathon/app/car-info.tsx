@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { LinearGradient } from 'expo-linear-gradient';
 
 // Temporary car data (will be replaced with backend data later)
 const carData = {
@@ -30,38 +31,33 @@ const carData = {
 
 export default function CarInfoPage() {
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>Машины мэдээлэл</Text>
-        <TouchableOpacity style={styles.editButton}>
-          <MaterialIcons name="edit" size={24} color="#3949ab" />
+    <LinearGradient colors={["#3949ab", "#6a1b9a"]} style={styles.container}>
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.infoSection}>
+          <InfoItem icon="directions-car" label="Марк" value={carData.markName} />
+          <InfoItem icon="directions-car" label="Модель" value={carData.modelName} />
+          <InfoItem icon="badge" label="Улсын дугаар" value={carData.plateNumber} />
+          <InfoItem icon="color-lens" label="Өнгө" value={carData.colorName} />
+          <InfoItem icon="calendar-today" label="Үйлдвэрлэсэн он" value={carData.buildYear} />
+          <InfoItem icon="local-gas-station" label="Түлш" value={carData.fuelType} />
+          <InfoItem icon="people" label="Суудлын тоо" value={carData.manCount.toString()} />
+          <InfoItem icon="straighten" label="Урт" value={carData.length} />
+          <InfoItem icon="height" label="Өндөр" value={carData.height} />
+          <InfoItem icon="straighten" label="Өргөн" value={carData.width} />
+          <InfoItem icon="scale" label="Жин" value={carData.weight} />
+          <InfoItem icon="engineering" label="Моторын дугаар" value={carData.motorNumber} />
+          <InfoItem icon="business" label="Кабины дугаар" value={carData.cabinNumber} />
+          <InfoItem icon="public" label="Улс" value={carData.countryName} />
+          <InfoItem icon="category" label="Төрөл" value={carData.type} />
+          <InfoItem icon="class" label="Ангилал" value={carData.className} />
+          <InfoItem icon="event" label="Импортын огноо" value={carData.importDate} />
+        </View>
+
+        <TouchableOpacity style={styles.saveButton}>
+          <Text style={styles.saveButtonText}>Хадгалах</Text>
         </TouchableOpacity>
-      </View>
-
-      <View style={styles.infoSection}>
-        <InfoItem icon="directions-car" label="Марк" value={carData.markName} />
-        <InfoItem icon="directions-car" label="Модель" value={carData.modelName} />
-        <InfoItem icon="badge" label="Улсын дугаар" value={carData.plateNumber} />
-        <InfoItem icon="color-lens" label="Өнгө" value={carData.colorName} />
-        <InfoItem icon="calendar-today" label="Үйлдвэрлэсэн он" value={carData.buildYear} />
-        <InfoItem icon="local-gas-station" label="Түлш" value={carData.fuelType} />
-        <InfoItem icon="people" label="Суудлын тоо" value={carData.manCount.toString()} />
-        <InfoItem icon="straighten" label="Урт" value={carData.length} />
-        <InfoItem icon="height" label="Өндөр" value={carData.height} />
-        <InfoItem icon="straighten" label="Өргөн" value={carData.width} />
-        <InfoItem icon="scale" label="Жин" value={carData.weight} />
-        <InfoItem icon="engineering" label="Моторын дугаар" value={carData.motorNumber} />
-        <InfoItem icon="business" label="Кабины дугаар" value={carData.cabinNumber} />
-        <InfoItem icon="public" label="Улс" value={carData.countryName} />
-        <InfoItem icon="category" label="Төрөл" value={carData.type} />
-        <InfoItem icon="class" label="Ангилал" value={carData.className} />
-        <InfoItem icon="event" label="Импортын огноо" value={carData.importDate} />
-      </View>
-
-      <TouchableOpacity style={styles.saveButton}>
-        <Text style={styles.saveButtonText}>Хадгалах</Text>
-      </TouchableOpacity>
-    </ScrollView>
+      </ScrollView>
+    </LinearGradient>
   );
 }
 
@@ -78,29 +74,17 @@ const InfoItem = ({ icon, label, value }: { icon: keyof typeof MaterialIcons.gly
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f3f6fd",
   },
-  header: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    padding: 20,
-    backgroundColor: "#fff",
-    borderBottomWidth: 1,
-    borderBottomColor: "#e0e0e0",
-  },
-  headerTitle: {
-    fontSize: 20,
-    fontWeight: "bold",
-    color: "#3949ab",
-  },
-  editButton: {
-    padding: 8,
+  scrollView: {
+    flex: 1,
+    paddingTop: 16,
   },
   infoSection: {
     backgroundColor: "#fff",
-    marginTop: 20,
+    marginHorizontal: 16,
     padding: 16,
+    borderRadius: 12,
+    marginBottom: 16,
   },
   infoItem: {
     flexDirection: "row",
@@ -123,8 +107,8 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   saveButton: {
-    backgroundColor: "#3949ab",
-    margin: 20,
+    backgroundColor: "#6a1b9a",
+    margin: 16,
     padding: 16,
     borderRadius: 8,
     alignItems: "center",
