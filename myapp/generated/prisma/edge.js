@@ -238,7 +238,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/apple/Desktop/project/myapp/generated/prisma",
+      "value": "C:\\Users\\lenovo\\Downloads\\New folder\\project\\myapp\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -247,7 +247,7 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin-arm64",
+        "value": "windows",
         "native": true
       },
       {
@@ -260,11 +260,12 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/apple/Desktop/project/myapp/prisma/schema.prisma",
+    "sourceFilePath": "C:\\Users\\lenovo\\Downloads\\New folder\\project\\myapp\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null
+    "rootEnvPath": null,
+    "schemaEnvPath": "../../.env"
   },
   "relativePath": "../../prisma",
   "clientVersion": "6.7.0",
@@ -278,21 +279,12 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-<<<<<<< HEAD
         "value": null
       }
     }
   },
   "inlineSchema": "datasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../generated/prisma\"\n  binaryTargets = [\"native\", \"windows\", \"darwin-arm64\"]\n}\n\nmodel User {\n  id            Int                      @id @default(autoincrement())\n  firstName     String\n  lastName      String\n  register      String                   @unique\n  penalty       Penalty[]\n  transport     Transport[]\n  notifications PermissionNotification[]\n  createdAt     DateTime                 @default(now())\n  updatedAt     DateTime                 @default(now()) @updatedAt\n  phoneNumber   String                   @unique\n  password      String?\n  image         String                   @default(\"https://res.cloudinary.com/dszot6j60/image/upload/v1740139778/samples/smile.jpg\")\n}\n\nmodel PermissionNotification {\n  id        Int      @id @default(autoincrement())\n  message   String\n  userId    Int\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  user      User     @relation(fields: [userId], references: [id])\n}\n\nmodel Penalty {\n  id        Int      @id @default(autoincrement())\n  user      User     @relation(fields: [userId], references: [id])\n  userId    Int\n  amount    String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  carId     Int\n  car       Car      @relation(fields: [carId], references: [id])\n  paid      Boolean  @default(false)\n}\n\nmodel Car {\n  id            Int           @id @default(autoincrement())\n  axleCount     Int\n  buildYear     String\n  cabinNumber   String        @unique\n  capacity      String\n  className     String\n  colorName     String\n  countryName   String\n  fuelType      String\n  height        String\n  importDate    DateTime\n  length        String\n  manCount      Int\n  markName      String\n  mass          String\n  modelName     String\n  motorNumber   String\n  ownerType     OwnerType\n  plateNumber   String\n  type          String\n  wheelPosition WheelPosition\n  width         String\n  penalties     Penalty[]\n  transport     Transport[]\n  createdAt     DateTime      @default(now())\n  updatedAt     DateTime      @updatedAt\n}\n\nmodel Transport {\n  id            Int            @id @default(autoincrement())\n  userId        Int\n  user          User           @relation(fields: [userId], references: [id])\n  carId         Int\n  car           Car            @relation(fields: [carId], references: [id])\n  status        Boolean        @default(false)\n  areas         Area[]\n  notifications Notification[]\n  createdAt     DateTime       @default(now())\n  updatedAt     DateTime       @updatedAt\n}\n\nmodel CallCenter {\n  id            Int            @id @default(autoincrement())\n  email         String         @unique\n  password      String\n  areaId        Int\n  area          Area           @relation(fields: [areaId], references: [id])\n  notifications Notification[]\n  createdAt     DateTime       @default(now())\n  updatedAt     DateTime       @updatedAt\n}\n\nmodel Area {\n  id          Int          @id @default(autoincrement())\n  transports  Transport[]\n  area        Json\n  callCenters CallCenter[]\n  createdAt   DateTime     @default(now())\n  updatedAt   DateTime     @updatedAt\n}\n\nmodel Notification {\n  id           Int        @id @default(autoincrement())\n  transportId  Int\n  transport    Transport  @relation(fields: [transportId], references: [id])\n  callCenterId Int\n  callCenter   CallCenter @relation(fields: [callCenterId], references: [id])\n  message      String\n  createdAt    DateTime   @default(now())\n  updatedAt    DateTime   @updatedAt\n}\n\nenum OwnerType {\n  PERSON\n  COMPANY\n}\n\nenum WheelPosition {\n  RIGHT\n  LEFT\n}\n",
   "inlineSchemaHash": "80301e56125a752b0eec223c5900c88dc3b38b6085a8acfe72573674ce038337",
-=======
-        "value": "postgresql://neondb_owner:npg_6Gru8mWRLAnD@ep-late-sound-a4mltoew-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
-      }
-    }
-  },
-  "inlineSchema": "datasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\ngenerator client {\n  provider      = \"prisma-client-js\"\n  output        = \"../generated/prisma\"\n  binaryTargets = [\"native\", \"windows\"]\n}\n\nmodel User {\n  id            Int                      @id @default(autoincrement())\n  firstName     String\n  lastName      String\n  register      String                   @unique\n  penalty       Penalty[]\n  transport     Transport[]\n  notifications PermissionNotification[]\n  createdAt     DateTime                 @default(now())\n  updatedAt     DateTime                 @default(now()) @updatedAt\n  phoneNumber   String                   @unique\n  password      String?\n  image         String                   @default(\"https://res.cloudinary.com/dszot6j60/image/upload/v1740139778/samples/smile.jpg\")\n}\n\nmodel PermissionNotification {\n  id        Int      @id @default(autoincrement())\n  message   String\n  userId    Int\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  user      User     @relation(fields: [userId], references: [id])\n}\n\nmodel Penalty {\n  id        Int      @id @default(autoincrement())\n  user      User     @relation(fields: [userId], references: [id])\n  userId    Int\n  amount    String\n  createdAt DateTime @default(now())\n  updatedAt DateTime @updatedAt\n  carId     Int\n  car       Car      @relation(fields: [carId], references: [id])\n  paid      Boolean  @default(false)\n}\n\nmodel Car {\n  id            Int           @id @default(autoincrement())\n  axleCount     Int\n  buildYear     String\n  cabinNumber   String        @unique\n  capacity      String\n  className     String\n  colorName     String\n  countryName   String\n  fuelType      String\n  height        String\n  importDate    DateTime\n  length        String\n  manCount      Int\n  markName      String\n  mass          String\n  modelName     String\n  motorNumber   String\n  ownerType     OwnerType\n  plateNumber   String\n  type          String\n  wheelPosition WheelPosition\n  width         String\n  penalties     Penalty[]\n  transport     Transport[]\n  createdAt     DateTime      @default(now())\n  updatedAt     DateTime      @updatedAt\n}\n\nmodel Transport {\n  id            Int            @id @default(autoincrement())\n  userId        Int\n  user          User           @relation(fields: [userId], references: [id])\n  carId         Int\n  car           Car            @relation(fields: [carId], references: [id])\n  status        Boolean        @default(false)\n  areas         Area[]\n  notifications Notification[]\n  createdAt     DateTime       @default(now())\n  updatedAt     DateTime       @updatedAt\n}\n\nmodel CallCenter {\n  id            Int            @id @default(autoincrement())\n  email         String         @unique\n  password      String\n  areaId        Int\n  area          Area           @relation(fields: [areaId], references: [id])\n  notifications Notification[]\n  createdAt     DateTime       @default(now())\n  updatedAt     DateTime       @updatedAt\n}\n\nmodel Area {\n  id          Int          @id @default(autoincrement())\n  transports  Transport[]\n  area        Json\n  callCenters CallCenter[]\n  createdAt   DateTime     @default(now())\n  updatedAt   DateTime     @updatedAt\n}\n\nmodel Notification {\n  id           Int        @id @default(autoincrement())\n  transportId  Int\n  transport    Transport  @relation(fields: [transportId], references: [id])\n  callCenterId Int\n  callCenter   CallCenter @relation(fields: [callCenterId], references: [id])\n  message      String\n  createdAt    DateTime   @default(now())\n  updatedAt    DateTime   @updatedAt\n}\n\nenum OwnerType {\n  PERSON\n  COMPANY\n}\n\nenum WheelPosition {\n  RIGHT\n  LEFT\n}\n",
-  "inlineSchemaHash": "dc50629d3f32381fd0d5419f10162b4c21fb2dfb859ed7bf84a3a050fd4fbb81",
->>>>>>> 6679122d336fe2c58cd68c97664fa97f2fa5f241
   "copyEngine": true
 }
 config.dirname = '/'

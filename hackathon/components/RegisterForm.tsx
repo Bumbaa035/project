@@ -46,10 +46,12 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegistered }) => {
     try {
       alert(JSON.stringify(form));
       const res = await axios.post(
-        `${process.env.NEXT_PUBLIC_URL}/auth/signUp`,
+        `http://192.168.22.190:3300/auth/signUp`,
         form
       );
+
       alert(JSON.stringify(res.data));
+
       if (res.data.success) {
         Alert.alert("Амжилттай", "Бүртгэл амжилттай!");
         if (onRegistered) onRegistered();
