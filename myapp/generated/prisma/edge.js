@@ -238,7 +238,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "/Users/apple/Desktop/project/myapp/generated/prisma",
+      "value": "C:\\Users\\lenovo\\Downloads\\New folder\\project\\myapp\\generated\\prisma",
       "fromEnvVar": null
     },
     "config": {
@@ -247,7 +247,7 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "darwin-arm64",
+        "value": "windows",
         "native": true
       },
       {
@@ -260,11 +260,12 @@ const config = {
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "/Users/apple/Desktop/project/myapp/prisma/schema.prisma",
+    "sourceFilePath": "C:\\Users\\lenovo\\Downloads\\New folder\\project\\myapp\\prisma\\schema.prisma",
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null
+    "rootEnvPath": "../../.env",
+    "schemaEnvPath": "../../.env"
   },
   "relativePath": "../../prisma",
   "clientVersion": "6.7.0",
@@ -278,8 +279,7 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://neondb_owner:npg_kXb1wWSOZME3@ep-shy-scene-a4vib0vl-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
-
+        "value": null
       }
     }
   },
