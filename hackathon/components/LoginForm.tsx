@@ -53,7 +53,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoggedIn }) => {
     }
 
     try {
-      const response = await fetch("http://192.168.22.190:3300/auth/login", {
+      const response = await fetch("http://210.109.53.233:3300/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ phoneNumber: phone, password }),

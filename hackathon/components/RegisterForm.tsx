@@ -46,7 +46,7 @@ const RegisterForm: React.FC<RegisterFormProps> = ({ onRegistered }) => {
     try {
       alert(JSON.stringify(form));
       const res = await axios.post(
-        `http://192.168.22.190:3300/auth/signUp`,
+        `http://210.109.53.233:3300/auth/signUp`,
         form
       );
 
