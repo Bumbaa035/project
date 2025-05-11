@@ -124,25 +124,6 @@ export default function DashboardPage() {
         {/* Transport History + Chart */}
         <View style={styles.sectionBox}>
           <Text style={styles.sectionTitle}>Тээвэрлэлтүүдийн түүх</Text>
-          <LineChart
-            data={{
-              labels: ["3-р сар", "4-р сар", "5-р сар", "6-р сар"],
-              datasets: [{ data: [1, 1, 1, transports.length - 3] }]
-            }}
-            width={Dimensions.get("window").width - 60}
-            height={160}
-            chartConfig={{
-              backgroundColor: "#fff",
-              backgroundGradientFrom: "#fff",
-              backgroundGradientTo: "#fff",
-              decimalPlaces: 0,
-              color: (opacity = 1) => `rgba(57, 73, 171, ${opacity})`,
-              labelColor: (opacity = 1) => `rgba(0,0,0,${opacity})`,
-              style: { borderRadius: 16 },
-              propsForDots: { r: "6", strokeWidth: "2", stroke: "#3949ab" }
-            }}
-            style={{ marginVertical: 8, borderRadius: 16 }}
-          />
           {transports.length === 0 ? (
             <Text style={styles.emptyText}>Тээвэрлэлт байхгүй</Text>
           ) : (
