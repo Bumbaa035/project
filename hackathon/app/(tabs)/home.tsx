@@ -13,9 +13,16 @@ const features = [
     desc: 'Жолооч, ачааны төрөл, маршрут'
   },
   {
+<<<<<<< HEAD
     icon: <MaterialIcons name="gps-fixed" size={24} color="#3949ab" />,
     title: 'GPS хяналт',
     desc: 'Бодит цагт байршил хянах'
+=======
+    icon: <MaterialIcons name="gps-fixed" size={32} color="#3949ab" />,
+    title: 'GPS байршлын хяналт',
+    desc: 'Машины байршлыг бодит цагт хянах, зөвшөөрөгдсөн маршрутаар явж буй эсэхийг шалгах.',
+    button: '/active-transport'
+>>>>>>> 6679122d336fe2c58cd68c97664fa97f2fa5f241
   },
   {
     icon: <MaterialIcons name="notifications-active" size={24} color="#3949ab" />,
