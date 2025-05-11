@@ -1,6 +1,6 @@
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = "postgresql://neondb_owner:npg_6Gru8mWRLAnD@ep-late-sound-a4mltoew-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
 }
 
 generator client {
@@ -18,7 +18,7 @@ model User {
   transport     Transport[]
   notifications PermissionNotification[]
   createdAt     DateTime                 @default(now())
-  updatedAt     DateTime                 @updatedAt
+  updatedAt     DateTime                 @default(now()) @updatedAt
   location      String
   phoneNumber   String                   @unique
   password      String?
@@ -92,7 +92,7 @@ model Transport {
 
 model CallCenter {
   id            Int            @id @default(autoincrement())
-  email         String
+  email         String         @unique
   password      String
   areaId        Int
   area          Area           @relation(fields: [areaId], references: [id])

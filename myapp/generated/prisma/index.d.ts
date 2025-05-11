@@ -11919,17 +11919,17 @@ export namespace Prisma {
 
   export type CallCenterWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    email?: string
     AND?: CallCenterWhereInput | CallCenterWhereInput[]
     OR?: CallCenterWhereInput[]
     NOT?: CallCenterWhereInput | CallCenterWhereInput[]
-    email?: StringFilter<"CallCenter"> | string
     password?: StringFilter<"CallCenter"> | string
     areaId?: IntFilter<"CallCenter"> | number
     createdAt?: DateTimeFilter<"CallCenter"> | Date | string
     updatedAt?: DateTimeFilter<"CallCenter"> | Date | string
     area?: XOR<AreaScalarRelationFilter, AreaWhereInput>
     notifications?: NotificationListRelationFilter
-  }, "id">
+  }, "id" | "email">
 
   export type CallCenterOrderByWithAggregationInput = {
     id?: SortOrder

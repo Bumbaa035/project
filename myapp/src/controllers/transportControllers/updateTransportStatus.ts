@@ -1,4 +1,4 @@
-import prisma from "../prismaClient";
+import prisma from "../../prismaClient";
 import { Request, Response } from "express";
 export const updateTransportStatus = async (req: Request, res: Response) => {
   const { id, status } = req.body;
