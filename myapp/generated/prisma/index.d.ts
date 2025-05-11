@@ -1761,7 +1761,6 @@ export namespace Prisma {
     register: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    location: string | null
     phoneNumber: string | null
     password: string | null
     image: string | null
@@ -1774,7 +1773,6 @@ export namespace Prisma {
     register: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    location: string | null
     phoneNumber: string | null
     password: string | null
     image: string | null
@@ -1787,7 +1785,6 @@ export namespace Prisma {
     register: number
     createdAt: number
     updatedAt: number
-    location: number
     phoneNumber: number
     password: number
     image: number
@@ -1810,7 +1807,6 @@ export namespace Prisma {
     register?: true
     createdAt?: true
     updatedAt?: true
-    location?: true
     phoneNumber?: true
     password?: true
     image?: true
@@ -1823,7 +1819,6 @@ export namespace Prisma {
     register?: true
     createdAt?: true
     updatedAt?: true
-    location?: true
     phoneNumber?: true
     password?: true
     image?: true
@@ -1836,7 +1831,6 @@ export namespace Prisma {
     register?: true
     createdAt?: true
     updatedAt?: true
-    location?: true
     phoneNumber?: true
     password?: true
     image?: true
@@ -1936,7 +1930,6 @@ export namespace Prisma {
     register: string
     createdAt: Date
     updatedAt: Date
-    location: string
     phoneNumber: string
     password: string | null
     image: string
@@ -1968,7 +1961,6 @@ export namespace Prisma {
     register?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    location?: boolean
     phoneNumber?: boolean
     password?: boolean
     image?: boolean
@@ -1985,7 +1977,6 @@ export namespace Prisma {
     register?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    location?: boolean
     phoneNumber?: boolean
     password?: boolean
     image?: boolean
@@ -1998,7 +1989,6 @@ export namespace Prisma {
     register?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    location?: boolean
     phoneNumber?: boolean
     password?: boolean
     image?: boolean
@@ -2011,13 +2001,12 @@ export namespace Prisma {
     register?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    location?: boolean
     phoneNumber?: boolean
     password?: boolean
     image?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "register" | "createdAt" | "updatedAt" | "location" | "phoneNumber" | "password" | "image", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "firstName" | "lastName" | "register" | "createdAt" | "updatedAt" | "phoneNumber" | "password" | "image", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     penalty?: boolean | User$penaltyArgs<ExtArgs>
     transport?: boolean | User$transportArgs<ExtArgs>
@@ -2041,7 +2030,6 @@ export namespace Prisma {
       register: string
       createdAt: Date
       updatedAt: Date
-      location: string
       phoneNumber: string
       password: string | null
       image: string
@@ -2477,7 +2465,6 @@ export namespace Prisma {
     readonly register: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
-    readonly location: FieldRef<"User", 'String'>
     readonly phoneNumber: FieldRef<"User", 'String'>
     readonly password: FieldRef<"User", 'String'>
     readonly image: FieldRef<"User", 'String'>
@@ -5236,7 +5223,6 @@ export namespace Prisma {
     type: string | null
     wheelPosition: $Enums.WheelPosition | null
     width: string | null
-    location: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5264,7 +5250,6 @@ export namespace Prisma {
     type: string | null
     wheelPosition: $Enums.WheelPosition | null
     width: string | null
-    location: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -5292,7 +5277,6 @@ export namespace Prisma {
     type: number
     wheelPosition: number
     width: number
-    location: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -5334,7 +5318,6 @@ export namespace Prisma {
     type?: true
     wheelPosition?: true
     width?: true
-    location?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -5362,7 +5345,6 @@ export namespace Prisma {
     type?: true
     wheelPosition?: true
     width?: true
-    location?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -5390,7 +5372,6 @@ export namespace Prisma {
     type?: true
     wheelPosition?: true
     width?: true
-    location?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -5505,7 +5486,6 @@ export namespace Prisma {
     type: string
     wheelPosition: $Enums.WheelPosition
     width: string
-    location: string
     createdAt: Date
     updatedAt: Date
     _count: CarCountAggregateOutputType | null
@@ -5552,7 +5532,6 @@ export namespace Prisma {
     type?: boolean
     wheelPosition?: boolean
     width?: boolean
-    location?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     penalties?: boolean | Car$penaltiesArgs<ExtArgs>
@@ -5583,7 +5562,6 @@ export namespace Prisma {
     type?: boolean
     wheelPosition?: boolean
     width?: boolean
-    location?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["car"]>
@@ -5611,7 +5589,6 @@ export namespace Prisma {
     type?: boolean
     wheelPosition?: boolean
     width?: boolean
-    location?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["car"]>
@@ -5639,12 +5616,11 @@ export namespace Prisma {
     type?: boolean
     wheelPosition?: boolean
     width?: boolean
-    location?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type CarOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "axleCount" | "buildYear" | "cabinNumber" | "capacity" | "className" | "colorName" | "countryName" | "fuelType" | "height" | "importDate" | "length" | "manCount" | "markName" | "mass" | "modelName" | "motorNumber" | "ownerType" | "plateNumber" | "type" | "wheelPosition" | "width" | "location" | "createdAt" | "updatedAt", ExtArgs["result"]["car"]>
+  export type CarOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "axleCount" | "buildYear" | "cabinNumber" | "capacity" | "className" | "colorName" | "countryName" | "fuelType" | "height" | "importDate" | "length" | "manCount" | "markName" | "mass" | "modelName" | "motorNumber" | "ownerType" | "plateNumber" | "type" | "wheelPosition" | "width" | "createdAt" | "updatedAt", ExtArgs["result"]["car"]>
   export type CarInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     penalties?: boolean | Car$penaltiesArgs<ExtArgs>
     transport?: boolean | Car$transportArgs<ExtArgs>
@@ -5682,7 +5658,6 @@ export namespace Prisma {
       type: string
       wheelPosition: $Enums.WheelPosition
       width: string
-      location: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["car"]>
@@ -6132,7 +6107,6 @@ export namespace Prisma {
     readonly type: FieldRef<"Car", 'String'>
     readonly wheelPosition: FieldRef<"Car", 'WheelPosition'>
     readonly width: FieldRef<"Car", 'String'>
-    readonly location: FieldRef<"Car", 'String'>
     readonly createdAt: FieldRef<"Car", 'DateTime'>
     readonly updatedAt: FieldRef<"Car", 'DateTime'>
   }
@@ -6618,7 +6592,6 @@ export namespace Prisma {
     userId: number | null
     carId: number | null
     status: boolean | null
-    destination: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6628,7 +6601,6 @@ export namespace Prisma {
     userId: number | null
     carId: number | null
     status: boolean | null
-    destination: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6638,7 +6610,6 @@ export namespace Prisma {
     userId: number
     carId: number
     status: number
-    destination: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -6662,7 +6633,6 @@ export namespace Prisma {
     userId?: true
     carId?: true
     status?: true
-    destination?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6672,7 +6642,6 @@ export namespace Prisma {
     userId?: true
     carId?: true
     status?: true
-    destination?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6682,7 +6651,6 @@ export namespace Prisma {
     userId?: true
     carId?: true
     status?: true
-    destination?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -6779,7 +6747,6 @@ export namespace Prisma {
     userId: number
     carId: number
     status: boolean
-    destination: string
     createdAt: Date
     updatedAt: Date
     _count: TransportCountAggregateOutputType | null
@@ -6808,7 +6775,6 @@ export namespace Prisma {
     userId?: boolean
     carId?: boolean
     status?: boolean
-    destination?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -6823,7 +6789,6 @@ export namespace Prisma {
     userId?: boolean
     carId?: boolean
     status?: boolean
-    destination?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -6835,7 +6800,6 @@ export namespace Prisma {
     userId?: boolean
     carId?: boolean
     status?: boolean
-    destination?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
@@ -6847,12 +6811,11 @@ export namespace Prisma {
     userId?: boolean
     carId?: boolean
     status?: boolean
-    destination?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type TransportOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "carId" | "status" | "destination" | "createdAt" | "updatedAt", ExtArgs["result"]["transport"]>
+  export type TransportOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "carId" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["transport"]>
   export type TransportInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     car?: boolean | CarDefaultArgs<ExtArgs>
@@ -6882,7 +6845,6 @@ export namespace Prisma {
       userId: number
       carId: number
       status: boolean
-      destination: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["transport"]>
@@ -7316,7 +7278,6 @@ export namespace Prisma {
     readonly userId: FieldRef<"Transport", 'Int'>
     readonly carId: FieldRef<"Transport", 'Int'>
     readonly status: FieldRef<"Transport", 'Boolean'>
-    readonly destination: FieldRef<"Transport", 'String'>
     readonly createdAt: FieldRef<"Transport", 'DateTime'>
     readonly updatedAt: FieldRef<"Transport", 'DateTime'>
   }
@@ -11177,7 +11138,6 @@ export namespace Prisma {
     register: 'register',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt',
-    location: 'location',
     phoneNumber: 'phoneNumber',
     password: 'password',
     image: 'image'
@@ -11233,7 +11193,6 @@ export namespace Prisma {
     type: 'type',
     wheelPosition: 'wheelPosition',
     width: 'width',
-    location: 'location',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -11246,7 +11205,6 @@ export namespace Prisma {
     userId: 'userId',
     carId: 'carId',
     status: 'status',
-    destination: 'destination',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -11451,7 +11409,6 @@ export namespace Prisma {
     register?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    location?: StringFilter<"User"> | string
     phoneNumber?: StringFilter<"User"> | string
     password?: StringNullableFilter<"User"> | string | null
     image?: StringFilter<"User"> | string
@@ -11467,7 +11424,6 @@ export namespace Prisma {
     register?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    location?: SortOrder
     phoneNumber?: SortOrder
     password?: SortOrderInput | SortOrder
     image?: SortOrder
@@ -11487,7 +11443,6 @@ export namespace Prisma {
     lastName?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
-    location?: StringFilter<"User"> | string
     password?: StringNullableFilter<"User"> | string | null
     image?: StringFilter<"User"> | string
     penalty?: PenaltyListRelationFilter
@@ -11502,7 +11457,6 @@ export namespace Prisma {
     register?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    location?: SortOrder
     phoneNumber?: SortOrder
     password?: SortOrderInput | SortOrder
     image?: SortOrder
@@ -11523,7 +11477,6 @@ export namespace Prisma {
     register?: StringWithAggregatesFilter<"User"> | string
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
-    location?: StringWithAggregatesFilter<"User"> | string
     phoneNumber?: StringWithAggregatesFilter<"User"> | string
     password?: StringNullableWithAggregatesFilter<"User"> | string | null
     image?: StringWithAggregatesFilter<"User"> | string
@@ -11682,7 +11635,6 @@ export namespace Prisma {
     type?: StringFilter<"Car"> | string
     wheelPosition?: EnumWheelPositionFilter<"Car"> | $Enums.WheelPosition
     width?: StringFilter<"Car"> | string
-    location?: StringFilter<"Car"> | string
     createdAt?: DateTimeFilter<"Car"> | Date | string
     updatedAt?: DateTimeFilter<"Car"> | Date | string
     penalties?: PenaltyListRelationFilter
@@ -11712,7 +11664,6 @@ export namespace Prisma {
     type?: SortOrder
     wheelPosition?: SortOrder
     width?: SortOrder
-    location?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     penalties?: PenaltyOrderByRelationAggregateInput
@@ -11745,7 +11696,6 @@ export namespace Prisma {
     type?: StringFilter<"Car"> | string
     wheelPosition?: EnumWheelPositionFilter<"Car"> | $Enums.WheelPosition
     width?: StringFilter<"Car"> | string
-    location?: StringFilter<"Car"> | string
     createdAt?: DateTimeFilter<"Car"> | Date | string
     updatedAt?: DateTimeFilter<"Car"> | Date | string
     penalties?: PenaltyListRelationFilter
@@ -11775,7 +11725,6 @@ export namespace Prisma {
     type?: SortOrder
     wheelPosition?: SortOrder
     width?: SortOrder
-    location?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: CarCountOrderByAggregateInput
@@ -11811,7 +11760,6 @@ export namespace Prisma {
     type?: StringWithAggregatesFilter<"Car"> | string
     wheelPosition?: EnumWheelPositionWithAggregatesFilter<"Car"> | $Enums.WheelPosition
     width?: StringWithAggregatesFilter<"Car"> | string
-    location?: StringWithAggregatesFilter<"Car"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Car"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Car"> | Date | string
   }
@@ -11824,7 +11772,6 @@ export namespace Prisma {
     userId?: IntFilter<"Transport"> | number
     carId?: IntFilter<"Transport"> | number
     status?: BoolFilter<"Transport"> | boolean
-    destination?: StringFilter<"Transport"> | string
     createdAt?: DateTimeFilter<"Transport"> | Date | string
     updatedAt?: DateTimeFilter<"Transport"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -11838,7 +11785,6 @@ export namespace Prisma {
     userId?: SortOrder
     carId?: SortOrder
     status?: SortOrder
-    destination?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     user?: UserOrderByWithRelationInput
@@ -11855,7 +11801,6 @@ export namespace Prisma {
     userId?: IntFilter<"Transport"> | number
     carId?: IntFilter<"Transport"> | number
     status?: BoolFilter<"Transport"> | boolean
-    destination?: StringFilter<"Transport"> | string
     createdAt?: DateTimeFilter<"Transport"> | Date | string
     updatedAt?: DateTimeFilter<"Transport"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
@@ -11869,7 +11814,6 @@ export namespace Prisma {
     userId?: SortOrder
     carId?: SortOrder
     status?: SortOrder
-    destination?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: TransportCountOrderByAggregateInput
@@ -11887,7 +11831,6 @@ export namespace Prisma {
     userId?: IntWithAggregatesFilter<"Transport"> | number
     carId?: IntWithAggregatesFilter<"Transport"> | number
     status?: BoolWithAggregatesFilter<"Transport"> | boolean
-    destination?: StringWithAggregatesFilter<"Transport"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Transport"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Transport"> | Date | string
   }
@@ -12083,7 +12026,6 @@ export namespace Prisma {
     register: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    location: string
     phoneNumber: string
     password?: string | null
     image?: string
@@ -12099,7 +12041,6 @@ export namespace Prisma {
     register: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    location: string
     phoneNumber: string
     password?: string | null
     image?: string
@@ -12114,7 +12055,6 @@ export namespace Prisma {
     register?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     image?: StringFieldUpdateOperationsInput | string
@@ -12130,7 +12070,6 @@ export namespace Prisma {
     register?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     image?: StringFieldUpdateOperationsInput | string
@@ -12146,7 +12085,6 @@ export namespace Prisma {
     register: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    location: string
     phoneNumber: string
     password?: string | null
     image?: string
@@ -12158,7 +12096,6 @@ export namespace Prisma {
     register?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     image?: StringFieldUpdateOperationsInput | string
@@ -12171,7 +12108,6 @@ export namespace Prisma {
     register?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     image?: StringFieldUpdateOperationsInput | string
@@ -12316,7 +12252,6 @@ export namespace Prisma {
     type: string
     wheelPosition: $Enums.WheelPosition
     width: string
-    location: string
     createdAt?: Date | string
     updatedAt?: Date | string
     penalties?: PenaltyCreateNestedManyWithoutCarInput
@@ -12346,7 +12281,6 @@ export namespace Prisma {
     type: string
     wheelPosition: $Enums.WheelPosition
     width: string
-    location: string
     createdAt?: Date | string
     updatedAt?: Date | string
     penalties?: PenaltyUncheckedCreateNestedManyWithoutCarInput
@@ -12375,7 +12309,6 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     wheelPosition?: EnumWheelPositionFieldUpdateOperationsInput | $Enums.WheelPosition
     width?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     penalties?: PenaltyUpdateManyWithoutCarNestedInput
@@ -12405,7 +12338,6 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     wheelPosition?: EnumWheelPositionFieldUpdateOperationsInput | $Enums.WheelPosition
     width?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     penalties?: PenaltyUncheckedUpdateManyWithoutCarNestedInput
@@ -12435,7 +12367,6 @@ export namespace Prisma {
     type: string
     wheelPosition: $Enums.WheelPosition
     width: string
-    location: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -12462,7 +12393,6 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     wheelPosition?: EnumWheelPositionFieldUpdateOperationsInput | $Enums.WheelPosition
     width?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12490,14 +12420,12 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     wheelPosition?: EnumWheelPositionFieldUpdateOperationsInput | $Enums.WheelPosition
     width?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TransportCreateInput = {
     status?: boolean
-    destination: string
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutTransportInput
@@ -12511,7 +12439,6 @@ export namespace Prisma {
     userId: number
     carId: number
     status?: boolean
-    destination: string
     createdAt?: Date | string
     updatedAt?: Date | string
     areas?: AreaUncheckedCreateNestedManyWithoutTransportsInput
@@ -12520,7 +12447,6 @@ export namespace Prisma {
 
   export type TransportUpdateInput = {
     status?: BoolFieldUpdateOperationsInput | boolean
-    destination?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutTransportNestedInput
@@ -12534,7 +12460,6 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     carId?: IntFieldUpdateOperationsInput | number
     status?: BoolFieldUpdateOperationsInput | boolean
-    destination?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     areas?: AreaUncheckedUpdateManyWithoutTransportsNestedInput
@@ -12546,14 +12471,12 @@ export namespace Prisma {
     userId: number
     carId: number
     status?: boolean
-    destination: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
 
   export type TransportUpdateManyMutationInput = {
     status?: BoolFieldUpdateOperationsInput | boolean
-    destination?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12563,7 +12486,6 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     carId?: IntFieldUpdateOperationsInput | number
     status?: BoolFieldUpdateOperationsInput | boolean
-    destination?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12837,7 +12759,6 @@ export namespace Prisma {
     register?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    location?: SortOrder
     phoneNumber?: SortOrder
     password?: SortOrder
     image?: SortOrder
@@ -12854,7 +12775,6 @@ export namespace Prisma {
     register?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    location?: SortOrder
     phoneNumber?: SortOrder
     password?: SortOrder
     image?: SortOrder
@@ -12867,7 +12787,6 @@ export namespace Prisma {
     register?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    location?: SortOrder
     phoneNumber?: SortOrder
     password?: SortOrder
     image?: SortOrder
@@ -13079,7 +12998,6 @@ export namespace Prisma {
     type?: SortOrder
     wheelPosition?: SortOrder
     width?: SortOrder
-    location?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -13113,7 +13031,6 @@ export namespace Prisma {
     type?: SortOrder
     wheelPosition?: SortOrder
     width?: SortOrder
-    location?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -13141,7 +13058,6 @@ export namespace Prisma {
     type?: SortOrder
     wheelPosition?: SortOrder
     width?: SortOrder
-    location?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -13197,7 +13113,6 @@ export namespace Prisma {
     userId?: SortOrder
     carId?: SortOrder
     status?: SortOrder
-    destination?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -13213,7 +13128,6 @@ export namespace Prisma {
     userId?: SortOrder
     carId?: SortOrder
     status?: SortOrder
-    destination?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -13223,7 +13137,6 @@ export namespace Prisma {
     userId?: SortOrder
     carId?: SortOrder
     status?: SortOrder
-    destination?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -14202,7 +14115,6 @@ export namespace Prisma {
 
   export type TransportCreateWithoutUserInput = {
     status?: boolean
-    destination: string
     createdAt?: Date | string
     updatedAt?: Date | string
     car: CarCreateNestedOneWithoutTransportInput
@@ -14214,7 +14126,6 @@ export namespace Prisma {
     id?: number
     carId: number
     status?: boolean
-    destination: string
     createdAt?: Date | string
     updatedAt?: Date | string
     areas?: AreaUncheckedCreateNestedManyWithoutTransportsInput
@@ -14307,7 +14218,6 @@ export namespace Prisma {
     userId?: IntFilter<"Transport"> | number
     carId?: IntFilter<"Transport"> | number
     status?: BoolFilter<"Transport"> | boolean
-    destination?: StringFilter<"Transport"> | string
     createdAt?: DateTimeFilter<"Transport"> | Date | string
     updatedAt?: DateTimeFilter<"Transport"> | Date | string
   }
@@ -14345,7 +14255,6 @@ export namespace Prisma {
     register: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    location: string
     phoneNumber: string
     password?: string | null
     image?: string
@@ -14360,7 +14269,6 @@ export namespace Prisma {
     register: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    location: string
     phoneNumber: string
     password?: string | null
     image?: string
@@ -14390,7 +14298,6 @@ export namespace Prisma {
     register?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     image?: StringFieldUpdateOperationsInput | string
@@ -14405,7 +14312,6 @@ export namespace Prisma {
     register?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     image?: StringFieldUpdateOperationsInput | string
@@ -14419,7 +14325,6 @@ export namespace Prisma {
     register: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    location: string
     phoneNumber: string
     password?: string | null
     image?: string
@@ -14434,7 +14339,6 @@ export namespace Prisma {
     register: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    location: string
     phoneNumber: string
     password?: string | null
     image?: string
@@ -14469,7 +14373,6 @@ export namespace Prisma {
     type: string
     wheelPosition: $Enums.WheelPosition
     width: string
-    location: string
     createdAt?: Date | string
     updatedAt?: Date | string
     transport?: TransportCreateNestedManyWithoutCarInput
@@ -14498,7 +14401,6 @@ export namespace Prisma {
     type: string
     wheelPosition: $Enums.WheelPosition
     width: string
-    location: string
     createdAt?: Date | string
     updatedAt?: Date | string
     transport?: TransportUncheckedCreateNestedManyWithoutCarInput
@@ -14526,7 +14428,6 @@ export namespace Prisma {
     register?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     image?: StringFieldUpdateOperationsInput | string
@@ -14541,7 +14442,6 @@ export namespace Prisma {
     register?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     image?: StringFieldUpdateOperationsInput | string
@@ -14582,7 +14482,6 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     wheelPosition?: EnumWheelPositionFieldUpdateOperationsInput | $Enums.WheelPosition
     width?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     transport?: TransportUpdateManyWithoutCarNestedInput
@@ -14611,7 +14510,6 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     wheelPosition?: EnumWheelPositionFieldUpdateOperationsInput | $Enums.WheelPosition
     width?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     transport?: TransportUncheckedUpdateManyWithoutCarNestedInput
@@ -14646,7 +14544,6 @@ export namespace Prisma {
 
   export type TransportCreateWithoutCarInput = {
     status?: boolean
-    destination: string
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutTransportInput
@@ -14658,7 +14555,6 @@ export namespace Prisma {
     id?: number
     userId: number
     status?: boolean
-    destination: string
     createdAt?: Date | string
     updatedAt?: Date | string
     areas?: AreaUncheckedCreateNestedManyWithoutTransportsInput
@@ -14713,7 +14609,6 @@ export namespace Prisma {
     register: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    location: string
     phoneNumber: string
     password?: string | null
     image?: string
@@ -14728,7 +14623,6 @@ export namespace Prisma {
     register: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    location: string
     phoneNumber: string
     password?: string | null
     image?: string
@@ -14763,7 +14657,6 @@ export namespace Prisma {
     type: string
     wheelPosition: $Enums.WheelPosition
     width: string
-    location: string
     createdAt?: Date | string
     updatedAt?: Date | string
     penalties?: PenaltyCreateNestedManyWithoutCarInput
@@ -14792,7 +14685,6 @@ export namespace Prisma {
     type: string
     wheelPosition: $Enums.WheelPosition
     width: string
-    location: string
     createdAt?: Date | string
     updatedAt?: Date | string
     penalties?: PenaltyUncheckedCreateNestedManyWithoutCarInput
@@ -14865,7 +14757,6 @@ export namespace Prisma {
     register?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     image?: StringFieldUpdateOperationsInput | string
@@ -14880,7 +14771,6 @@ export namespace Prisma {
     register?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    location?: StringFieldUpdateOperationsInput | string
     phoneNumber?: StringFieldUpdateOperationsInput | string
     password?: NullableStringFieldUpdateOperationsInput | string | null
     image?: StringFieldUpdateOperationsInput | string
@@ -14921,7 +14811,6 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     wheelPosition?: EnumWheelPositionFieldUpdateOperationsInput | $Enums.WheelPosition
     width?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     penalties?: PenaltyUpdateManyWithoutCarNestedInput
@@ -14950,7 +14839,6 @@ export namespace Prisma {
     type?: StringFieldUpdateOperationsInput | string
     wheelPosition?: EnumWheelPositionFieldUpdateOperationsInput | $Enums.WheelPosition
     width?: StringFieldUpdateOperationsInput | string
-    location?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     penalties?: PenaltyUncheckedUpdateManyWithoutCarNestedInput
@@ -15099,7 +14987,6 @@ export namespace Prisma {
 
   export type TransportCreateWithoutAreasInput = {
     status?: boolean
-    destination: string
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutTransportInput
@@ -15112,7 +14999,6 @@ export namespace Prisma {
     userId: number
     carId: number
     status?: boolean
-    destination: string
     createdAt?: Date | string
     updatedAt?: Date | string
     notifications?: NotificationUncheckedCreateNestedManyWithoutTransportInput
@@ -15196,7 +15082,6 @@ export namespace Prisma {
 
   export type TransportCreateWithoutNotificationsInput = {
     status?: boolean
-    destination: string
     createdAt?: Date | string
     updatedAt?: Date | string
     user: UserCreateNestedOneWithoutTransportInput
@@ -15209,7 +15094,6 @@ export namespace Prisma {
     userId: number
     carId: number
     status?: boolean
-    destination: string
     createdAt?: Date | string
     updatedAt?: Date | string
     areas?: AreaUncheckedCreateNestedManyWithoutTransportsInput
@@ -15255,7 +15139,6 @@ export namespace Prisma {
 
   export type TransportUpdateWithoutNotificationsInput = {
     status?: BoolFieldUpdateOperationsInput | boolean
-    destination?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutTransportNestedInput
@@ -15268,7 +15151,6 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     carId?: IntFieldUpdateOperationsInput | number
     status?: BoolFieldUpdateOperationsInput | boolean
-    destination?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     areas?: AreaUncheckedUpdateManyWithoutTransportsNestedInput
@@ -15315,7 +15197,6 @@ export namespace Prisma {
     id?: number
     carId: number
     status?: boolean
-    destination: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -15355,7 +15236,6 @@ export namespace Prisma {
 
   export type TransportUpdateWithoutUserInput = {
     status?: BoolFieldUpdateOperationsInput | boolean
-    destination?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     car?: CarUpdateOneRequiredWithoutTransportNestedInput
@@ -15367,7 +15247,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     carId?: IntFieldUpdateOperationsInput | number
     status?: BoolFieldUpdateOperationsInput | boolean
-    destination?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     areas?: AreaUncheckedUpdateManyWithoutTransportsNestedInput
@@ -15378,7 +15257,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     carId?: IntFieldUpdateOperationsInput | number
     status?: BoolFieldUpdateOperationsInput | boolean
-    destination?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15416,7 +15294,6 @@ export namespace Prisma {
     id?: number
     userId: number
     status?: boolean
-    destination: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -15449,7 +15326,6 @@ export namespace Prisma {
 
   export type TransportUpdateWithoutCarInput = {
     status?: BoolFieldUpdateOperationsInput | boolean
-    destination?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutTransportNestedInput
@@ -15461,7 +15337,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     status?: BoolFieldUpdateOperationsInput | boolean
-    destination?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     areas?: AreaUncheckedUpdateManyWithoutTransportsNestedInput
@@ -15472,7 +15347,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     userId?: IntFieldUpdateOperationsInput | number
     status?: BoolFieldUpdateOperationsInput | boolean
-    destination?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -15571,7 +15445,6 @@ export namespace Prisma {
 
   export type TransportUpdateWithoutAreasInput = {
     status?: BoolFieldUpdateOperationsInput | boolean
-    destination?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     user?: UserUpdateOneRequiredWithoutTransportNestedInput
@@ -15584,7 +15457,6 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     carId?: IntFieldUpdateOperationsInput | number
     status?: BoolFieldUpdateOperationsInput | boolean
-    destination?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     notifications?: NotificationUncheckedUpdateManyWithoutTransportNestedInput
@@ -15595,7 +15467,6 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
     carId?: IntFieldUpdateOperationsInput | number
     status?: BoolFieldUpdateOperationsInput | boolean
-    destination?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

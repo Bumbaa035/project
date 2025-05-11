@@ -7,7 +7,6 @@ export const addTransport = async (req: Request, res: Response) => {
       data: {
         carId,
         userId,
-        destination,
       },
     });
     res.status(202).json({
