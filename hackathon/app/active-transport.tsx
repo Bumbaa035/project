@@ -63,73 +63,73 @@ export default function ActiveTransportPage() {
       newSocket.disconnect();
     };
   }, []);
+useEffect(() => {
+  (async () => {
+    const { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== "granted") {
+      Alert.alert("Байршил авах зөвшөөрөл олгогдоогүй байна.");
+      return;
+    }
 
-  useEffect(() => {
-    (async () => {
-      const { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== "granted") {
-        Alert.alert("Байршил авах зөвшөөрөл олгогдоогүй байна.");
-        return;
-      }
+    locationWatcher.current = await Location.watchPositionAsync(
+      {
+        accuracy: Location.Accuracy.High,
+        timeInterval: 5000,
+        distanceInterval: 5,
+      },
+      (loc) => {
+        const coords = {
+          latitude: loc.coords.latitude,
+          longitude: loc.coords.longitude,
+        };
+        setLocation(coords);
 
-      locationWatcher.current = await Location.watchPositionAsync(
-        {
-          accuracy: Location.Accuracy.High,
-          timeInterval: 5000,
-          distanceInterval: 5,
-        },
-        (loc) => {
-          const coords = {
-            latitude: loc.coords.latitude,
-            longitude: loc.coords.longitude,
-          };
-          setLocation(coords);
-
-          if (socket) {
-            socket.emit("locationUpdate", {
-              userId: "user_id", // Replace with actual user ID
-              lat: coords.latitude,
-              lng: coords.longitude,
-            });
-          }
+        if (socket) {
+          socket.emit("locationUpdate", {
+            userId: "user_id", // TODO: replace with real userId
+            lat: coords.latitude,
+            lng: coords.longitude,
+          });
         }
-      ]
+      }
     );
+  })(); // <- CLOSE the async function
+
+  return () => {
+    locationWatcher.current?.remove();
   };
+}, [socket]);
 
-    return () => {
-      locationWatcher.current?.remove();
-    };
-  }, [socket]);
-
-  if (!location) {
-    return (
-      <View style={styles.mapPlaceholder}>
-        <Text>Байршлыг тодорхойлж байна...</Text>
-      </View>
-    );
-  }
+  // if (!location) {
+  //   return (
+  //     <View style={styles.mapPlaceholder}>
+  //       <Text>Байршлыг тодорхойлж байна...</Text>
+  //     </View>
+  //   );
+  // }
 
   return (
     <View style={{ flex: 1 }}>
-      <View style={{ flex: 4 }}>
-        <MapView
-          style={styles.map}
-          initialRegion={{
-            latitude: location.latitude,
-            longitude: location.longitude,
-            latitudeDelta: 0.005,
-            longitudeDelta: 0.005,
-          }}
-          showsUserLocation={true}
-        >
-          <Polygon
-            coordinates={restrictedZone}
-            fillColor="rgba(255,0,0,0.3)"
-            strokeColor="red"
-            strokeWidth={2}
-          />
-        </MapView>
+      <View style={{ flex: 4 }}>{location && (
+  <MapView
+    style={styles.map}
+    initialRegion={{
+      latitude: location.latitude,
+      longitude: location.longitude,
+      latitudeDelta: 0.005,
+      longitudeDelta: 0.005,
+    }}
+    showsUserLocation={true}
+  >
+    <Polygon
+      coordinates={restrictedZone}
+      fillColor="rgba(255,0,0,0.3)"
+      strokeColor="red"
+      strokeWidth={2}
+    />
+  </MapView>
+)}
+
       </View>
 
       <View style={styles.bottomSheet}>
@@ -220,5 +220,4 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 17,
     color: "#fff",
- LinearGrad if (  },
-});
+}});
