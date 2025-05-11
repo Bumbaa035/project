@@ -4,6 +4,5 @@ import { callCenterExist } from "../middleware/callCenterExist";
 import { getCurrent } from "../controllers/authControllerCenter/getCurrent";
 
 export const callCenterRoute = express.Router();
-
 callCenterRoute.post("/login", callCenterExist, login);
-// callCenterRoute.get("/current/:id", getCurrent);
+callCenterRoute.get("/current/:id", getCurrent);

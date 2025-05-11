@@ -1,7 +1,12 @@
 import prisma from "../../prismaClient";
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 
-export const getCurrent = async (req: Request, res: Response) => {
+// Changed return type to Promise<void> and added NextFunction parameter
+export const getCurrent = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
   const id = Number(req.params.id);
 
   try {
@@ -18,10 +23,11 @@ export const getCurrent = async (req: Request, res: Response) => {
     });
 
     if (!callCenter) {
-      return res.status(404).json({
+      res.status(404).json({
         error: true,
         message: "Call center not found",
       });
+      return; // Return without using return res...
     }
 
     const transportDetails = await Promise.all(
