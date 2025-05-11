@@ -1,6 +1,7 @@
 import React from "react";
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import { LinearGradient } from 'expo-linear-gradient';
 
 // Temporary user data (will be replaced with backend data later)
 const userData = {
@@ -13,28 +14,30 @@ const userData = {
 
 export default function UserInfoPage() {
   return (
-    <ScrollView style={styles.container}>
-      <View style={styles.profileSection}>
-        <Image
-          source={{ uri: userData.profileImage }}
-          style={styles.profileImage}
-        />
-        <TouchableOpacity style={styles.editButton}>
-          <MaterialIcons name="edit" size={24} color="#3949ab" />
+    <LinearGradient colors={["#3949ab", "#6a1b9a"]} style={styles.container}>
+      <ScrollView style={styles.scrollView}>
+        <View style={styles.profileSection}>
+          <Image
+            source={{ uri: userData.profileImage }}
+            style={styles.profileImage}
+          />
+          <TouchableOpacity style={styles.editButton}>
+            <MaterialIcons name="edit" size={24} color="#3949ab" />
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.infoSection}>
+          <InfoItem icon="person" label="Овог" value={userData.lastName} />
+          <InfoItem icon="person" label="Нэр" value={userData.firstName} />
+          <InfoItem icon="phone" label="Утас" value={userData.phone} />
+          <InfoItem icon="badge" label="Регистр" value={userData.registerNumber} />
+        </View>
+
+        <TouchableOpacity style={styles.saveButton}>
+          <Text style={styles.saveButtonText}>Хадгалах</Text>
         </TouchableOpacity>
-      </View>
-
-      <View style={styles.infoSection}>
-        <InfoItem icon="person" label="Овог" value={userData.lastName} />
-        <InfoItem icon="person" label="Нэр" value={userData.firstName} />
-        <InfoItem icon="phone" label="Утас" value={userData.phone} />
-        <InfoItem icon="badge" label="Регистр" value={userData.registerNumber} />
-      </View>
-
-      <TouchableOpacity style={styles.saveButton}>
-        <Text style={styles.saveButtonText}>Хадгалах</Text>
-      </TouchableOpacity>
-    </ScrollView>
+      </ScrollView>
+    </LinearGradient>
   );
 }
 
@@ -51,14 +54,18 @@ const InfoItem = ({ icon, label, value }: { icon: keyof typeof MaterialIcons.gly
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f3f6fd",
+  },
+  scrollView: {
+    flex: 1,
+    paddingTop: 16,
   },
   profileSection: {
     alignItems: "center",
     padding: 20,
     backgroundColor: "#fff",
-    borderBottomWidth: 1,
-    borderBottomColor: "#e0e0e0",
+    marginHorizontal: 16,
+    borderRadius: 12,
+    marginBottom: 16,
   },
   profileImage: {
     width: 120,
@@ -73,8 +80,10 @@ const styles = StyleSheet.create({
   },
   infoSection: {
     backgroundColor: "#fff",
-    marginTop: 20,
+    marginHorizontal: 16,
     padding: 16,
+    borderRadius: 12,
+    marginBottom: 16,
   },
   infoItem: {
     flexDirection: "row",
@@ -97,8 +106,8 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   saveButton: {
-    backgroundColor: "#3949ab",
-    margin: 20,
+    backgroundColor: "#6a1b9a",
+    margin: 16,
     padding: 16,
     borderRadius: 8,
     alignItems: "center",

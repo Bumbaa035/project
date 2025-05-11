@@ -93,8 +93,9 @@ export default function ActiveTransportPage() {
             });
           }
         }
-      );
-    })();
+      ]
+    );
+  };
 
     return () => {
       locationWatcher.current?.remove();
@@ -149,6 +150,28 @@ export default function ActiveTransportPage() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  mapContainer: {
+    flex: 4,
+    margin: 16,
+    borderRadius: 12,
+    overflow: 'hidden',
+  },
+  map: {
+    flex: 1,
+  },
+  mapPlaceholder: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
+  mapPlaceholderText: {
+    color: '#666',
+    fontSize: 16,
+  },
   bottomSheet: {
     flex: 6,
     backgroundColor: "#fff",
@@ -178,12 +201,24 @@ const styles = StyleSheet.create({
     flex: 1,
     textAlign: "left",
   },
-  mapPlaceholder: {
-    flex: 1,
-    justifyContent: "center",
+  finishButton: {
+    flexDirection: "row",
     alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "#6a1b9a",
+    borderRadius: 14,
+    paddingVertical: 18,
+    paddingHorizontal: 18,
+    marginTop: 10,
+    shadowColor: "#6a1b9a",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    elevation: 3,
   },
-  map: {
-    flex: 1,
-  },
+  finishButtonText: {
+    fontWeight: "bold",
+    fontSize: 17,
+    color: "#fff",
+ LinearGrad if (  },
 });

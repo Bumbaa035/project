@@ -46,6 +46,7 @@ export default function TabLayout() {
         options={{
           title: 'Fine',
           tabBarIcon: ({ color }) => <MaterialIcons size={28} name="receipt" color={color} />,
+          headerShown: false,
         }}
       />
     </Tabs>
