@@ -1,120 +1,151 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Alert, View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import MapView from "react-native-maps";
+import MapView, { Polygon } from "react-native-maps";
 import { useRouter } from "expo-router";
-import * as Location from 'expo-location';
+import * as Location from "expo-location";
 import { MaterialIcons } from "@expo/vector-icons";
-import { useActiveTransport } from "../context/ActiveTransportContext";
-import { LinearGradient } from 'expo-linear-gradient';
+import { io } from "socket.io-client";
 
-const sections = [
-  {
-    label: "Торгуулиуд харах",
-    icon: "gavel",
-    onPress: (router: any) => router.push("/fine"),
-  },
-  {
-    label: "Хэрэглэгчийн мэдээлэл",
-    icon: "person",
-    onPress: (router: any) => router.push("/user-info"),
-  },
-  {
-    label: "Машины мэдээлэл",
-    icon: "directions-car",
-    onPress: (router: any) => router.push("/car-info"),
-  },
-  {
-    label: "Тээвэрлэлтүүдийн түүх",
-    icon: "history",
-    onPress: () => {}, // TODO: add navigation
-  },
-  {
-    label: "Цаг агаар",
-    icon: "wb-sunny",
-    onPress: () => {}, // TODO: add navigation
-  },
+const restrictedZone = [
+  { latitude: 47.9186, longitude: 106.8530 },
+  { latitude: 47.9226, longitude: 106.8570 },
+  { latitude: 47.9286, longitude: 106.9595 },
+  { latitude: 47.8970, longitude: 106.9445 },
+  { latitude: 47.8990, longitude: 106.9345 },
+  { latitude: 47.8960, longitude: 106.8875 },
+  { latitude: 47.8910, longitude: 106.8725 },
+  { latitude: 47.8970, longitude: 106.8570 },
 ];
 
 export default function ActiveTransportPage() {
+  const [location, setLocation] = useState(null);
+  const [socket, setSocket] = useState(null);
   const router = useRouter();
-  const [location, setLocation] = useState<Location.LocationObject | null>(null);
-  const { setActiveTransport } = useActiveTransport();
+  const locationWatcher = useRef<Location.LocationSubscription | null>(null);
+
+  const sections = [
+    {
+      label: "Торгуулиуд харах",
+      icon: "gavel",
+      onPress: () => Alert.alert("Торгуулиуд харах хэсэг удахгүй нэмэгдэнэ."),
+    },
+    {
+      label: "Хэрэглэгчийн мэдээлэл",
+      icon: "person",
+      onPress: () => router.push("/user-info"),
+    },
+    {
+      label: "Машины мэдээлэл",
+      icon: "directions-car",
+      onPress: () => router.push("/car-info"),
+    },
+    {
+      label: "Тээвэрлэлтүүдийн түүх",
+      icon: "history",
+      onPress: () => Alert.alert("Тээвэрлэлтүүдийн түүх хэсэг удахгүй нэмэгдэнэ."),
+    },
+    {
+      label: "Цаг агаар",
+      icon: "wb-sunny",
+      onPress: () => Alert.alert("Цаг агаар хэсэг удахгүй нэмэгдэнэ."),
+    },
+  ];
+
+  useEffect(() => {
+    const newSocket = io("http://210.109.53.233:3001");
+    setSocket(newSocket);
+
+    newSocket.on("alert", (msg) => {
+      Alert.alert("⚠️ Alert", msg);
+    });
+
+    return () => {
+      newSocket.disconnect();
+    };
+  }, []);
 
   useEffect(() => {
     (async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        Alert.alert('Permission to access location was denied');
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        Alert.alert("Байршил авах зөвшөөрөл олгогдоогүй байна.");
         return;
       }
 
-      let location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
-    })();
-  }, []);
-
-  const handleFinishTransport = () => {
-    Alert.alert(
-      "Тээвэрлэлт дуусгах",
-      "Тээвэрлэлтийг дуусгахдаа итгэлтэй байна уу?",
-      [
+      locationWatcher.current = await Location.watchPositionAsync(
         {
-          text: "Болих",
-          style: "cancel"
+          accuracy: Location.Accuracy.High,
+          timeInterval: 5000,
+          distanceInterval: 5,
         },
-        {
-          text: "Дуусгах",
-          onPress: () => {
-            setActiveTransport(false);
-            router.push("/dashboard");
-            router.replace("/dashboard");
+        (loc) => {
+          const coords = {
+            latitude: loc.coords.latitude,
+            longitude: loc.coords.longitude,
+          };
+          setLocation(coords);
+
+          if (socket) {
+            socket.emit("locationUpdate", {
+              userId: "user_id", // Replace with actual user ID
+              lat: coords.latitude,
+              lng: coords.longitude,
+            });
           }
         }
       ]
     );
   };
 
-  return (
-    <LinearGradient colors={["#3949ab", "#6a1b9a"]} style={styles.container}>
-      <View style={styles.mapContainer}>
-        {location ? (
-          <MapView
-            style={styles.map}
-            initialRegion={{
-              latitude: location.coords.latitude,
-              longitude: location.coords.longitude,
-              latitudeDelta: 0.005,
-              longitudeDelta: 0.005,
-            }}
-          />
-        ) : (
-          <View style={styles.mapPlaceholder}>
-            <Text style={styles.mapPlaceholderText}>Байршил тодорхойлогдсонгүй</Text>
-          </View>
-        )}
+    return () => {
+      locationWatcher.current?.remove();
+    };
+  }, [socket]);
+
+  if (!location) {
+    return (
+      <View style={styles.mapPlaceholder}>
+        <Text>Байршлыг тодорхойлж байна...</Text>
       </View>
+    );
+  }
+
+  return (
+    <View style={{ flex: 1 }}>
+      <View style={{ flex: 4 }}>
+        <MapView
+          style={styles.map}
+          initialRegion={{
+            latitude: location.latitude,
+            longitude: location.longitude,
+            latitudeDelta: 0.005,
+            longitudeDelta: 0.005,
+          }}
+          showsUserLocation={true}
+        >
+          <Polygon
+            coordinates={restrictedZone}
+            fillColor="rgba(255,0,0,0.3)"
+            strokeColor="red"
+            strokeWidth={2}
+          />
+        </MapView>
+      </View>
+
       <View style={styles.bottomSheet}>
-        {sections.map((section, idx) => (
+        {sections.map((section) => (
           <TouchableOpacity
             key={section.label}
             style={styles.sectionButton}
             activeOpacity={0.85}
-            onPress={() => section.onPress(router)}
+            onPress={section.onPress}
           >
-            <MaterialIcons name={section.icon as any} size={24} color="#3949ab" style={{ marginRight: 12 }} />
+            <MaterialIcons name={section.icon} size={24} color="#3949ab" style={{ marginRight: 12 }} />
             <Text style={styles.sectionTitle}>{section.label}</Text>
           </TouchableOpacity>
         ))}
-        <TouchableOpacity
-          style={styles.finishButton}
-          activeOpacity={0.85}
-          onPress={handleFinishTransport}
-        >
-          <MaterialIcons name="check-circle" size={24} color="#fff" style={{ marginRight: 12 }} />
-          <Text style={styles.finishButtonText}>Тээвэрлэлт дуусгах</Text>
-        </TouchableOpacity>
       </View>
-    </LinearGradient>
+    </View>
   );
 }
 
@@ -189,5 +220,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 17,
     color: "#fff",
-  },
+ LinearGrad if (  },
 });
