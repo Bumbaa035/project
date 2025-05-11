@@ -4,7 +4,12 @@ import MapView, { Polygon } from "react-native-maps";
 import { useRouter } from "expo-router";
 import * as Location from "expo-location";
 import { MaterialIcons } from "@expo/vector-icons";
-import { io } from "socket.io-client";
+import { io, Socket } from "socket.io-client";
+
+interface LocationState {
+  latitude: number;
+  longitude: number;
+}
 
 const restrictedZone = [
   { latitude: 47.9186, longitude: 106.8530 },
@@ -18,35 +23,35 @@ const restrictedZone = [
 ];
 
 export default function ActiveTransportPage() {
-  const [location, setLocation] = useState(null);
-  const [socket, setSocket] = useState(null);
+  const [location, setLocation] = useState<LocationState | null>(null);
+  const [socket, setSocket] = useState<Socket | null>(null);
   const router = useRouter();
   const locationWatcher = useRef<Location.LocationSubscription | null>(null);
 
   const sections = [
     {
       label: "Торгуулиуд харах",
-      icon: "gavel",
+      icon: "gavel" as const,
       onPress: () => Alert.alert("Торгуулиуд харах хэсэг удахгүй нэмэгдэнэ."),
     },
     {
       label: "Хэрэглэгчийн мэдээлэл",
-      icon: "person",
+      icon: "person" as const,
       onPress: () => router.push("/user-info"),
     },
     {
       label: "Машины мэдээлэл",
-      icon: "directions-car",
+      icon: "directions-car" as const,
       onPress: () => router.push("/car-info"),
     },
     {
       label: "Тээвэрлэлтүүдийн түүх",
-      icon: "history",
+      icon: "history" as const,
       onPress: () => Alert.alert("Тээвэрлэлтүүдийн түүх хэсэг удахгүй нэмэгдэнэ."),
     },
     {
       label: "Цаг агаар",
-      icon: "wb-sunny",
+      icon: "wb-sunny" as const,
       onPress: () => Alert.alert("Цаг агаар хэсэг удахгүй нэмэгдэнэ."),
     },
   ];
@@ -63,43 +68,37 @@ export default function ActiveTransportPage() {
       newSocket.disconnect();
     };
   }, []);
+useEffect(() => {
+  (async () => {
+    const { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== "granted") {
+      Alert.alert("Байршил авах зөвшөөрөл олгогдоогүй байна.");
+      return;
+    }
 
-  useEffect(() => {
-    (async () => {
-      const { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== "granted") {
-        Alert.alert("Байршил авах зөвшөөрөл олгогдоогүй байна.");
-        return;
-      }
+    locationWatcher.current = await Location.watchPositionAsync(
+      {
+        accuracy: Location.Accuracy.High,
+        timeInterval: 5000,
+        distanceInterval: 5,
+      },
+      (loc) => {
+        const coords = {
+          latitude: loc.coords.latitude,
+          longitude: loc.coords.longitude,
+        };
+        setLocation(coords);
 
-      locationWatcher.current = await Location.watchPositionAsync(
-        {
-          accuracy: Location.Accuracy.High,
-          timeInterval: 5000,
-          distanceInterval: 5,
-        },
-        (loc) => {
-          const coords = {
-            latitude: loc.coords.latitude,
-            longitude: loc.coords.longitude,
-          };
-          setLocation(coords);
-
-          if (socket) {
-            socket.emit("locationUpdate", {
-              userId: "user_id", // Replace with actual user ID
-              lat: coords.latitude,
-              lng: coords.longitude,
-            });
-          }
+        if (socket) {
+          socket.emit("locationUpdate", {
+            userId: "user_id", // TODO: replace with real userId
+            lat: coords.latitude,
+            lng: coords.longitude,
+          });
         }
-      ]
-    );
-  };
-
-    return () => {
-      locationWatcher.current?.remove();
-    };
+<<<<<<< HEAD
+      );
+    })();
   }, [socket]);
 
   if (!location) {
@@ -109,27 +108,47 @@ export default function ActiveTransportPage() {
       </View>
     );
   }
+=======
+      }
+    );
+  })(); // <- CLOSE the async function
+
+  return () => {
+    locationWatcher.current?.remove();
+  };
+}, [socket]);
+
+  // if (!location) {
+  //   return (
+  //     <View style={styles.mapPlaceholder}>
+  //       <Text>Байршлыг тодорхойлж байна...</Text>
+  //     </View>
+  //   );
+  // }
+>>>>>>> 6679122d336fe2c58cd68c97664fa97f2fa5f241
 
   return (
     <View style={{ flex: 1 }}>
-      <View style={{ flex: 4 }}>
-        <MapView
-          style={styles.map}
-          initialRegion={{
-            latitude: location.latitude,
-            longitude: location.longitude,
-            latitudeDelta: 0.005,
-            longitudeDelta: 0.005,
-          }}
-          showsUserLocation={true}
-        >
-          <Polygon
-            coordinates={restrictedZone}
-            fillColor="rgba(255,0,0,0.3)"
-            strokeColor="red"
-            strokeWidth={2}
-          />
-        </MapView>
+      <View style={{ flex: 4 }}>{location && (
+  <MapView
+    style={styles.map}
+    initialRegion={{
+      latitude: location.latitude,
+      longitude: location.longitude,
+      latitudeDelta: 0.005,
+      longitudeDelta: 0.005,
+    }}
+    showsUserLocation={true}
+  >
+    <Polygon
+      coordinates={restrictedZone}
+      fillColor="rgba(255,0,0,0.3)"
+      strokeColor="red"
+      strokeWidth={2}
+    />
+  </MapView>
+)}
+
       </View>
 
       <View style={styles.bottomSheet}>
@@ -220,5 +239,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 17,
     color: "#fff",
- LinearGrad if (  },
+<<<<<<< HEAD
+  },
 });
+=======
+}});
+>>>>>>> 6679122d336fe2c58cd68c97664fa97f2fa5f241

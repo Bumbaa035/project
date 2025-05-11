@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, TextInput, TouchableOpacity, Alert, Text, StyleSheet, ActivityIndicator, KeyboardAvoidingView, Platform, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { MaterialIcons } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 interface LoginFormProps {
   onLoggedIn?: () => void;
@@ -13,28 +14,54 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoggedIn }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    // Load saved phone number when component mounts
+    loadSavedPhone();
+  }, []);
+
+  const loadSavedPhone = async () => {
+    try {
+      const savedPhone = await AsyncStorage.getItem("userPhone");
+      if (savedPhone) {
+        setPhone(savedPhone);
+      }
+    } catch (e) {
+      console.error("Error loading saved phone:", e);
+    }
+  };
+
   const handleLogin = async () => {
     setLoading(true);
     setError("");
+
     if (password.length !== 4 || !/^[0-9]{4}$/.test(password)) {
       setError("Нууц үг 4 оронтой тоо байх ёстой!");
       setLoading(false);
       return;
     }
+
     try {
-      const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
+      const response = await fetch("http://localhost:3000/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phone, password }),
+        body: JSON.stringify({ phoneNumber: phone, password }),
       });
-      if (res.ok) {
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Save phone number for future logins
+        await AsyncStorage.setItem("userPhone", phone);
+        // Save token for authenticated requests
+        await AsyncStorage.setItem("userToken", data.token);
         Alert.alert("Амжилттай", "Нэвтэрлээ!");
         if (onLoggedIn) onLoggedIn();
       } else {
-        setError("Нэвтрэхэд алдаа гарлаа!");
+        setError(data.message || "Нэвтрэхэд алдаа гарлаа!");
       }
     } catch (e) {
       setError("Сүлжээний алдаа!");
+      console.error("Login error:", e);
     }
     setLoading(false);
   };
@@ -49,6 +76,19 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoggedIn }) => {
         <View style={styles.formBox}>
           <Text style={styles.title}>Нэвтрэх</Text>
           
+          <Text style={styles.label}>Утасны дугаар</Text>
+          <View style={styles.inputWrapper}>
+            <MaterialIcons name="phone" size={22} color="#3949ab" style={styles.inputIcon} />
+            <TextInput
+              style={styles.input}
+              placeholder="Утасны дугаар"
+              value={phone}
+              onChangeText={setPhone}
+              placeholderTextColor="#aaa"
+              keyboardType="phone-pad"
+            />
+          </View>
+
           <Text style={styles.label}>4 оронтой нууц үг</Text>
           <View style={styles.inputWrapper}>
             <MaterialIcons name="lock" size={22} color="#3949ab" style={styles.inputIcon} />
