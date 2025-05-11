@@ -1,11 +1,12 @@
 import prisma from "../../prismaClient";
 import { Request, Response } from "express";
 export const createPenalty = async (req: Request, res: Response) => {
-  const { amount, userId, carId } = req.body;
+  const { time, userId, carId } = req.body;
+  const cost = 1000;
   try {
     const newPenalty = await prisma.penalty.create({
       data: {
-        amount,
+        amount: (Number(time) * cost).toString(),
         userId,
         carId,
       },

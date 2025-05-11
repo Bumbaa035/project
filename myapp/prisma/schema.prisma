@@ -69,7 +69,6 @@ model Car {
   type         String
   wheelPosition WheelPosition
   width        String
-  location     String
   penalties    Penalty[]
   transport    Transport[]
   createdAt   DateTime @default(now())
@@ -83,7 +82,6 @@ model Transport {
   carId         Int 
   car           Car           @relation(fields: [carId], references: [id])
   status        Boolean       @default(false)
-  destination   String
   areas         Area[]
   notifications Notification[]
   createdAt   DateTime @default(now())
@@ -92,7 +90,7 @@ model Transport {
 
 model CallCenter {
   id            Int           @id @default(autoincrement())
-  email         String
+  email         String @unique
   password      String
   areaId        Int
   area          Area          @relation(fields: [areaId], references: [id])

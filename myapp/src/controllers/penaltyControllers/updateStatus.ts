@@ -1,19 +1,18 @@
 import prisma from "../../prismaClient";
 import { Request, Response } from "express";
-export const getCurrentUser = async (req: Request, res: Response) => {
+export const updateStatus = async (req: Request, res: Response) => {
   const { id } = req.body;
   try {
-    const user = await prisma.user.findUnique({
+    const updated = await prisma.penalty.update({
       where: id,
-      include: {
-        penalty: true,
-        transport: {
-          include: {
-            car: true,
-          },
-        },
-        notifications: true,
+      data: {
+        paid: true,
       },
+    });
+    res.status(200).json({
+      success: true,
+      message: "Successfully paig penalty",
+      info: updated,
     });
   } catch (error) {
     res.status(500).json({
