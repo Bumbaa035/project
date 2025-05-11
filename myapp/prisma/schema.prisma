@@ -19,7 +19,6 @@ model User {
   notifications PermissionNotification[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt @default(now())
-  location String 
   phoneNumber  String @unique
   password String?
   image String @default("https://res.cloudinary.com/dszot6j60/image/upload/v1740139778/samples/smile.jpg")
