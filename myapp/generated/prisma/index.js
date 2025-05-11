@@ -275,7 +275,7 @@ const config = {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "postgresql://neondb_owner:npg_6Gru8mWRLAnD@ep-late-sound-a4mltoew-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
+        "value": "postgresql://neondb_owner:npg_kXb1wWSOZME3@ep-shy-scene-a4vib0vl-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
       }
     }
   },
