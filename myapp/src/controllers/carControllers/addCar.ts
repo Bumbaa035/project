@@ -23,7 +23,6 @@ export const addCar = async (req: Request, res: Response) => {
     type,
     wheelPosition,
     width,
-    location,
   } = req.body;
   try {
     const carExist = await prisma.car.findUnique({
@@ -39,7 +38,6 @@ export const addCar = async (req: Request, res: Response) => {
     } else {
       const newCar = await prisma.car.create({
         data: {
-          location,
           width,
           wheelPosition: wheelPosition !== "зүүн" ? "RIGHT" : "LEFT",
           type,
