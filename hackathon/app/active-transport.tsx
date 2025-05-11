@@ -4,7 +4,12 @@ import MapView, { Polygon } from "react-native-maps";
 import { useRouter } from "expo-router";
 import * as Location from "expo-location";
 import { MaterialIcons } from "@expo/vector-icons";
-import { io } from "socket.io-client";
+import { io, Socket } from "socket.io-client";
+
+interface LocationState {
+  latitude: number;
+  longitude: number;
+}
 
 const restrictedZone = [
   { latitude: 47.9186, longitude: 106.8530 },
@@ -18,35 +23,35 @@ const restrictedZone = [
 ];
 
 export default function ActiveTransportPage() {
-  const [location, setLocation] = useState(null);
-  const [socket, setSocket] = useState(null);
+  const [location, setLocation] = useState<LocationState | null>(null);
+  const [socket, setSocket] = useState<Socket | null>(null);
   const router = useRouter();
   const locationWatcher = useRef<Location.LocationSubscription | null>(null);
 
   const sections = [
     {
       label: "Торгуулиуд харах",
-      icon: "gavel",
+      icon: "gavel" as const,
       onPress: () => Alert.alert("Торгуулиуд харах хэсэг удахгүй нэмэгдэнэ."),
     },
     {
       label: "Хэрэглэгчийн мэдээлэл",
-      icon: "person",
+      icon: "person" as const,
       onPress: () => router.push("/user-info"),
     },
     {
       label: "Машины мэдээлэл",
-      icon: "directions-car",
+      icon: "directions-car" as const,
       onPress: () => router.push("/car-info"),
     },
     {
       label: "Тээвэрлэлтүүдийн түүх",
-      icon: "history",
+      icon: "history" as const,
       onPress: () => Alert.alert("Тээвэрлэлтүүдийн түүх хэсэг удахгүй нэмэгдэнэ."),
     },
     {
       label: "Цаг агаар",
-      icon: "wb-sunny",
+      icon: "wb-sunny" as const,
       onPress: () => Alert.alert("Цаг агаар хэсэг удахгүй нэмэгдэнэ."),
     },
   ];
@@ -93,13 +98,8 @@ export default function ActiveTransportPage() {
             });
           }
         }
-      ]
-    );
-  };
-
-    return () => {
-      locationWatcher.current?.remove();
-    };
+      );
+    })();
   }, [socket]);
 
   if (!location) {
@@ -220,5 +220,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 17,
     color: "#fff",
- LinearGrad if (  },
+  },
 });
