@@ -48,18 +48,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onLoggedIn }) => {
       >
         <View style={styles.formBox}>
           <Text style={styles.title}>Нэвтрэх</Text>
-          <Text style={styles.label}>Утас</Text>
-          <View style={styles.inputWrapper}>
-            <MaterialIcons name="phone" size={22} color="#3949ab" style={styles.inputIcon} />
-            <TextInput
-              style={styles.input}
-              placeholder="Утас"
-              keyboardType="phone-pad"
-              onChangeText={setPhone}
-              value={phone}
-              placeholderTextColor="#aaa"
-            />
-          </View>
+          
           <Text style={styles.label}>4 оронтой нууц үг</Text>
           <View style={styles.inputWrapper}>
             <MaterialIcons name="lock" size={22} color="#3949ab" style={styles.inputIcon} />
