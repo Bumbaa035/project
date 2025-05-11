@@ -68,35 +68,36 @@ export default function ActiveTransportPage() {
       newSocket.disconnect();
     };
   }, []);
-useEffect(() => {
-  (async () => {
-    const { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== "granted") {
-      Alert.alert("Байршил авах зөвшөөрөл олгогдоогүй байна.");
-      return;
-    }
 
-    locationWatcher.current = await Location.watchPositionAsync(
-      {
-        accuracy: Location.Accuracy.High,
-        timeInterval: 5000,
-        distanceInterval: 5,
-      },
-      (loc) => {
-        const coords = {
-          latitude: loc.coords.latitude,
-          longitude: loc.coords.longitude,
-        };
-        setLocation(coords);
+  useEffect(() => {
+    (async () => {
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== "granted") {
+        Alert.alert("Байршил авах зөвшөөрөл олгогдоогүй байна.");
+        return;
+      }
 
-        if (socket) {
-          socket.emit("locationUpdate", {
-            userId: "user_id", // TODO: replace with real userId
-            lat: coords.latitude,
-            lng: coords.longitude,
-          });
+      locationWatcher.current = await Location.watchPositionAsync(
+        {
+          accuracy: Location.Accuracy.High,
+          timeInterval: 5000,
+          distanceInterval: 5,
+        },
+        (loc) => {
+          const coords = {
+            latitude: loc.coords.latitude,
+            longitude: loc.coords.longitude,
+          };
+          setLocation(coords);
+
+          if (socket) {
+            socket.emit("locationUpdate", {
+              userId: "user_id", // TODO: replace with real userId
+              lat: coords.latitude,
+              lng: coords.longitude,
+            });
+          }
         }
-<<<<<<< HEAD
       );
     })();
   }, [socket]);
@@ -108,24 +109,6 @@ useEffect(() => {
       </View>
     );
   }
-=======
-      }
-    );
-  })(); // <- CLOSE the async function
-
-  return () => {
-    locationWatcher.current?.remove();
-  };
-}, [socket]);
-
-  // if (!location) {
-  //   return (
-  //     <View style={styles.mapPlaceholder}>
-  //       <Text>Байршлыг тодорхойлж байна...</Text>
-  //     </View>
-  //   );
-  // }
->>>>>>> 6679122d336fe2c58cd68c97664fa97f2fa5f241
 
   return (
     <View style={{ flex: 1 }}>
@@ -239,9 +222,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     fontSize: 17,
     color: "#fff",
-<<<<<<< HEAD
   },
 });
-=======
-}});
->>>>>>> 6679122d336fe2c58cd68c97664fa97f2fa5f241
