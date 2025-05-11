@@ -127,7 +127,6 @@ exports.Prisma.UserScalarFieldEnum = {
   register: 'register',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  location: 'location',
   phoneNumber: 'phoneNumber',
   password: 'password',
   image: 'image'
@@ -174,7 +173,6 @@ exports.Prisma.CarScalarFieldEnum = {
   type: 'type',
   wheelPosition: 'wheelPosition',
   width: 'width',
-  location: 'location',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -184,7 +182,6 @@ exports.Prisma.TransportScalarFieldEnum = {
   userId: 'userId',
   carId: 'carId',
   status: 'status',
-  destination: 'destination',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

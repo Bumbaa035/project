@@ -4,8 +4,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 export const signUp = async (req: Request, res: Response) => {
-  const { firstName, lastName, register, location, phoneNumber, password } =
-    req.body;
+  const { firstName, lastName, register, phoneNumber, password } = req.body;
   const JWT_SECRET_KEY = process.env.JWT_KEY || "1234";
 
   try {
@@ -16,7 +15,6 @@ export const signUp = async (req: Request, res: Response) => {
         firstName: firstName,
         lastName: lastName,
         register: hashedRegister,
-        location: location,
         phoneNumber: phoneNumber,
         password: hashedPass,
       },
@@ -32,6 +30,7 @@ export const signUp = async (req: Request, res: Response) => {
       success: true,
       message: "Successfully created user info",
       token: token,
+      userId: newUser.id,
     });
   } catch (error) {
     res.status(500).json({
