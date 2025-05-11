@@ -2,6 +2,7 @@ import prisma from "../../prismaClient";
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime/library"; // ✅ correct import
 
 export const signUp = async (req: Request, res: Response) => {
   const { firstName, lastName, register, phoneNumber, password } = req.body;
@@ -10,15 +11,17 @@ export const signUp = async (req: Request, res: Response) => {
   try {
     const hashedRegister = await bcrypt.hash(register, 8);
     const hashedPass = await bcrypt.hash(password, 8);
+
     const newUser = await prisma.user.create({
       data: {
-        firstName: firstName,
-        lastName: lastName,
+        firstName,
+        lastName,
         register: hashedRegister,
-        phoneNumber: phoneNumber,
+        phoneNumber,
         password: hashedPass,
       },
     });
+
     const token = jwt.sign(
       {
         exp: Math.floor(Date.now() / 1000) + 60 * 60,
@@ -26,16 +29,28 @@ export const signUp = async (req: Request, res: Response) => {
       },
       JWT_SECRET_KEY
     );
-    res.status(202).json({
+
+    res.status(201).json({
       success: true,
       message: "Successfully created user info",
       token: token,
       userId: newUser.id,
     });
-  } catch (error) {
+  } catch (error: any) {
+    if (
+      error instanceof PrismaClientKnownRequestError &&
+      error.code === "P2002"
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "Энэ утасны дугаар бүртгэлтэй байна!",
+      });
+    }
+
+    console.error("Signup error:", error);
     res.status(500).json({
       error: true,
-      message: `Internal server error when signup:${error}`,
+      message: `Серверийн алдаа!`,
     });
   }
 };
