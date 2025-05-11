@@ -1,6 +1,6 @@
 datasource db {
   provider = "postgresql"
-  url      = "postgresql://neondb_owner:npg_6Gru8mWRLAnD@ep-late-sound-a4mltoew-pooler.us-east-1.aws.neon.tech/neondb?sslmode=require"
+  url      = env("DATABASE_URL")
 }
 
 generator client {
@@ -19,7 +19,6 @@ model User {
   notifications PermissionNotification[]
   createdAt     DateTime                 @default(now())
   updatedAt     DateTime                 @default(now()) @updatedAt
-  location      String
   phoneNumber   String                   @unique
   password      String?
   image         String                   @default("https://res.cloudinary.com/dszot6j60/image/upload/v1740139778/samples/smile.jpg")
@@ -69,7 +68,6 @@ model Car {
   type          String
   wheelPosition WheelPosition
   width         String
-  location      String
   penalties     Penalty[]
   transport     Transport[]
   createdAt     DateTime      @default(now())
@@ -83,7 +81,6 @@ model Transport {
   carId         Int
   car           Car            @relation(fields: [carId], references: [id])
   status        Boolean        @default(false)
-  destination   String
   areas         Area[]
   notifications Notification[]
   createdAt     DateTime       @default(now())
