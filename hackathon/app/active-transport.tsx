@@ -86,7 +86,7 @@ useEffect(() => {
 
         if (socket) {
           socket.emit("locationUpdate", {
-            userId: "user_id", // TODO: replace with real userId
+            userId: "2", // TODO: replace with real userId
             lat: coords.latitude,
             lng: coords.longitude,
           });
